@@ -32,9 +32,6 @@
     <ClCompile Include="src\ui\inputmanager.cpp">
       <Filter>src\ui</Filter>
     </ClCompile>
-    <ClCompile Include="src\ui\keymap.cpp">
-      <Filter>src\ui</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\rengine.h">

@@ -6,6 +6,10 @@
 
 namespace ren {
 	
+	/*! Wrapper class for a GLFW window
+		Methods are static because only a single window should exist
+		at any given time
+	*/
 	class WindowManager
 	{
 	private:

@@ -3,6 +3,11 @@
 #include <vector>
 namespace ren
 {
+	/*! Implement this interface to be able to subscribe to mouse events.
+		Each of these functions will only be called when the corresponding mouse
+		event occured. Make sure to call InputerManager::attachMouseListener to attach your
+		listener
+	*/
 	class IMouseListener
 	{
 	public:

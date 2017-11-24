@@ -151,7 +151,6 @@
     <ClCompile Include="src\ui\inputmanager.cpp" />
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\rengine.cpp" />
-    <ClCompile Include="src\ui\keymap.cpp" />
     <ClCompile Include="src\ui\windowmanager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

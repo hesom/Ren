@@ -47,6 +47,7 @@ namespace ren
 
 	void InputManager::handleCursorEvent(const double xpos, const double ypos)
 	{
+		//calculates dinstance since last cursor movement in pixels
 		double dx = m_mouseX_old - xpos;
 		double dy = m_mouseY_old - ypos;
 		m_mouseX_old = xpos;
