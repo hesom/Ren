@@ -32,7 +32,14 @@ namespace ren
 
 		void attachKeyListener(IKeyListener* keyListener);
 		void detachKeyListener(const IKeyListener* keyListener);
+
+	private:
+		static Key mapKey(int glfwKey);
+		static std::vector<KeyMod> mapMods(int glfwMod);
+		static MouseButton mapMouse(int glfwMouse);
 	};
+
+	
 }
 
 

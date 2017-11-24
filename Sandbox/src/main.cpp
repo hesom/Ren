@@ -1,7 +1,13 @@
 #include <iostream>
-#include "ren.h"
+#include <rengine.h>
 
+#include "Listener.h"
+#include "ui/inputmanager.h"
 int main()
 {
-	return createWindow();
+	using namespace ren;
+	Rengine engine;
+	Listener listener;
+	InputManager::getInstance().detachKeyListener(&listener);
+	engine.start();
 }

@@ -139,18 +139,18 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="include\ren.h" />
-    <ClInclude Include="src\ui\inputmanager.h" />
+    <ClInclude Include="include\rengine.h" />
+    <ClInclude Include="include\ui\inputmanager.h" />
     <ClInclude Include="src\debugging\debug.h" />
-    <ClInclude Include="src\ui\keylistener.h" />
-    <ClInclude Include="src\ui\keymap.h" />
-    <ClInclude Include="src\ui\mouselistener.h" />
-    <ClInclude Include="src\ui\windowmanager.h" />
+    <ClInclude Include="include\ui\keylistener.h" />
+    <ClInclude Include="include\ui\keymap.h" />
+    <ClInclude Include="include\ui\mouselistener.h" />
+    <ClInclude Include="include\ui\windowmanager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ui\inputmanager.cpp" />
     <ClCompile Include="src\glad.c" />
-    <ClCompile Include="src\ren.cpp" />
+    <ClCompile Include="src\rengine.cpp" />
     <ClCompile Include="src\ui\keymap.cpp" />
     <ClCompile Include="src\ui\windowmanager.cpp" />
   </ItemGroup>

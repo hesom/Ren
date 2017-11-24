@@ -1,7 +1,7 @@
 #include "../Debugging/debug.h"
 
-#include "windowmanager.h"
-#include "inputmanager.h"
+#include "ui/windowmanager.h"
+#include "ui/inputmanager.h"
 #include "glad/glad.h"
 
 namespace ren

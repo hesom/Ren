@@ -1,6 +1,4 @@
 #pragma once
-#include "GLFW/glfw3.h"
-#include <vector>
 namespace ren
 {
 	enum class Key
@@ -98,8 +96,6 @@ namespace ren
 		ERROR = 0x1111,
 	};
 
-	Key mapKey(int glfwKey);
-	std::vector<KeyMod> mapMods(int glfwMod);
-	MouseButton mapMouse(int glfwMouse);
+	
 }
 
