@@ -34,4 +34,7 @@ void Listener::onMouseMoved(double xpos, double ypos, double dx, double dy)
 
 void Listener::onMouseScroll(double xoffset, double yoffset)
 {
+	std::cout << "Mouse wheel dx: " << xoffset << std::endl;
+	std::cout << "Mouse wheel dy: " << yoffset << std::endl;
+	std::cout << std::endl;
 }
