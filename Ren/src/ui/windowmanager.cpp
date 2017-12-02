@@ -1,4 +1,4 @@
-#include "../Debugging/debug.h"
+#include "../debugging/debug.h"
 
 #include "ui/windowmanager.h"
 #include "ui/inputmanager.h"
@@ -71,5 +71,3 @@ namespace ren
 		glfwPollEvents();
 	}
 }
-
-
