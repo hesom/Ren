@@ -14,6 +14,9 @@ namespace ren {
 	{
 	private:
 		static GLFWwindow* window;
+#ifdef _DEBUG
+        static void debugSetup();
+#endif
 		WindowManager() {}
 		
 	public:
