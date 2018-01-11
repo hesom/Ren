@@ -2,15 +2,15 @@
 
 namespace ren
 {
-	class Rengine
-	{
-	private:
-		void createWindow();
-	public:
-		Rengine();
+    class Rengine
+    {
+    private:
+        void createWindow();
+    public:
+        Rengine();
 
-		void start();
-	};
+        void start();
+    };
 }
 
 

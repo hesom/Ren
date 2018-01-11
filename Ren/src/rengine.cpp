@@ -8,13 +8,13 @@
 
 namespace ren
 {
-	Rengine::Rengine()
-	{
-		createWindow();
-	}
+    Rengine::Rengine()
+    {
+        createWindow();
+    }
 
-	void Rengine::start()
-	{
+    void Rengine::start()
+    {
         float vertices[] = {
             0.5f,  0.5f, 0.0f,  // top right
             0.5f, -0.5f, 0.0f,  // bottom right
@@ -38,24 +38,24 @@ namespace ren
         std::vector<unsigned int> indexData;
 
         Mesh mesh(vertexData, indexData);
-        mesh.setupBuffer(); 
+        mesh.setupBuffer();
 
         for (int i = 0; i < 6; i++) {
             indexData.push_back(indices[i]);
         }
 
-		while (!WindowManager::exitRequested()) {
-            
+        while (!WindowManager::exitRequested()) {
+
             mesh.draw();
-			WindowManager::updateWindow();
-		}
+            WindowManager::updateWindow();
+        }
 
-		WindowManager::destroyWindow();
-	}
+        WindowManager::destroyWindow();
+    }
 
-	void Rengine::createWindow()
-	{
-		WindowManager::init();
-		WindowManager::createWindow(800, 600, "My Window");
-	}
+    void Rengine::createWindow()
+    {
+        WindowManager::init();
+        WindowManager::createWindow(800, 600, "My Window");
+    }
 }

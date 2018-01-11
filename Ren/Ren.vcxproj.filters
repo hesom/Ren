@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\graphics">
+      <UniqueIdentifier>{adae4b93-6ddc-4cb4-9707-27b56a43dcc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\debugging">
+      <UniqueIdentifier>{e59eeb89-4992-4274-9e47-e56975b0751e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ui">
+      <UniqueIdentifier>{c660decc-435f-49f6-b279-41d2f9bf563c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics">
+      <UniqueIdentifier>{fe347f65-9573-4425-af68-24c8e4fb5202}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ui">
+      <UniqueIdentifier>{2e82bd30-1d8b-43e9-87bd-d070c088d6e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\shaders">
+      <UniqueIdentifier>{61c7e466-aa8e-41b2-b244-2991f1832059}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\graphics\mesh.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\shaderprogram.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\inputmanager.cpp">
+      <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\windowmanager.cpp">
+      <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\glad.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\hsomm\Desktop\Ren-master\Ren\src\rengine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\debugging\debug.h">
+      <Filter>Source Files\debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\mesh.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\shaderprogram.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ui\inputmanager.h">
+      <Filter>Header Files\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ui\keylistener.h">
+      <Filter>Header Files\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ui\keymap.h">
+      <Filter>Header Files\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ui\mouselistener.h">
+      <Filter>Header Files\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ui\windowmanager.h">
+      <Filter>Header Files\ui</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="include\graphics\shaders\shader.frag">
+      <Filter>Header Files\graphics\shaders</Filter>
+    </None>
+    <None Include="include\graphics\shaders\shader.vert">
+      <Filter>Header Files\graphics\shaders</Filter>
+    </None>
+  </ItemGroup>
+</Project>
