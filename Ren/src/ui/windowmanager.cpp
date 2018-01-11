@@ -39,8 +39,6 @@ namespace ren
 		glViewport(0, 0, width, height);
 		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
-        glGenTextures(-5, nullptr);
-
 		glfwSetKeyCallback(window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
 			if (action == GLFW_PRESS) {
 				InputManager::getInstance().handleKeyPressedEvent(key, mods);

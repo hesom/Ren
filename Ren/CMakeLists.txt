@@ -11,22 +11,25 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
   add_compile_options(-std=c++14)
 endif()
 
-set(LIB_ROOT_DIR libs)
+set(LIB_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/libs)
 
 add_subdirectory(${LIB_ROOT_DIR}/glfw-3.2.1)
+
+file(GLOB_RECURSE SRC "src/*.cpp" "src/*.c")
+
+add_library(Ren STATIC ${SRC})
 
 include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/include
   ${LIB_ROOT_DIR}/glfw-3.2.1/include
   ${LIB_ROOT_DIR}/glad
   ${LIB_ROOT_DIR}/KHR
+  ${LIB_ROOT_DIR}/glm
 )
 
-file(GLOB_RECURSE SRC "src/*.cpp" "src/*.c")
-
-add_library(Ren STATIC ${SRC})
-
 find_package(OpenGL)
+
+target_compile_definitions(Ren PRIVATE GLFW_INCLUDE_NONE)
 
 target_link_libraries(Ren ${OPENGL_gl_LIBRARY})
 target_link_libraries(Ren glfw)
