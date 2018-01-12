@@ -8,9 +8,9 @@ int main()
 {
 	using namespace ren;
 	Rengine engine;
-	Listener listener;
+	//Listener listener;
 
-	InputManager::getInstance().detachKeyListener(&listener);
+	//InputManager::getInstance().detachKeyListener(&listener);
     
 	engine.start();
 }

@@ -18,6 +18,7 @@ namespace ren
 	{
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 #ifdef _DEBUG
         glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
@@ -80,15 +81,16 @@ namespace ren
 
 	void WindowManager::updateWindow()
 	{
-		glClear(GL_COLOR_BUFFER_BIT);
-		glfwSwapBuffers(window);
 		glfwPollEvents();
+		glfwSwapBuffers(window);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
 #ifdef _DEBUG
     void WindowManager::debugSetup()
     {
-        glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB);
+        glEnable(GL_DEBUG_OUTPUT);
+        glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
         glDebugMessageCallback([](GLenum source,
                                      GLenum type,
                                      GLuint id,
@@ -138,7 +140,7 @@ namespace ren
             std::cout << std::endl;
         }, nullptr);
 
-        glDebugMessageControlARB(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, nullptr, GL_TRUE);
+        glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, nullptr, GL_TRUE);
     }
 #endif  //_DEBUG
 
