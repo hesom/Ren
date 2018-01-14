@@ -8,6 +8,11 @@ namespace ren
         this->m_indices = indices;
     }
 
+    Mesh::~Mesh()
+    {
+        this->freeBuffer();
+    }
+
     std::vector<Vertex> const &Mesh::getVertices() const
     {
         return m_vertices;

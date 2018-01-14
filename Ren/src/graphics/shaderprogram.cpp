@@ -85,21 +85,31 @@ void ShaderProgram::attachGeometryShader(std::string source)
     m_attachedShaders.push_back(geometryShaderId);
 }
 
-void ShaderProgram::link()
+void ShaderProgram::destroy()
+{
+    for (auto shader : m_attachedShaders) {
+        glDeleteShader(shader);
+    }
+    glDeleteProgram(m_programId);
+}
+
+bool ShaderProgram::link()
 {
     glLinkProgram(m_programId);
 
 #ifdef _DEBUG
-    if (!verifyProgram) {
+    if (!verifyProgram(m_programId)) {
         for (auto shader : m_attachedShaders) {
             glDeleteShader(shader);
         }
+        return m_valid;
     }
 #endif
     for (auto shader : m_attachedShaders) {
         glDetachShader(m_programId, shader);
     }
     m_valid = true;
+    return m_valid;
 }
 
 void ShaderProgram::bind()
@@ -112,4 +122,9 @@ void ShaderProgram::bind()
 void ShaderProgram::unbind()
 {
     glUseProgram(0);
+}
+
+GLuint ShaderProgram::getRaw()
+{
+    return m_programId;
 }

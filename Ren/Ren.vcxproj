@@ -146,12 +146,14 @@
     <ClCompile Include="C:\Users\hsomm\Desktop\Ren-master\Ren\src\rengine.cpp" />
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\graphics\mesh.cpp" />
+    <ClCompile Include="src\graphics\shadermanager.cpp" />
     <ClCompile Include="src\graphics\shaderprogram.cpp" />
     <ClCompile Include="src\ui\inputmanager.cpp" />
     <ClCompile Include="src\ui\windowmanager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\graphics\mesh.h" />
+    <ClInclude Include="include\graphics\shadermanager.h" />
     <ClInclude Include="include\graphics\shaderprogram.h" />
     <ClInclude Include="include\ui\inputmanager.h" />
     <ClInclude Include="include\ui\keylistener.h" />

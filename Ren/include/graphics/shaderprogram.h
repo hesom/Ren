@@ -22,7 +22,11 @@ public:
     void attachFragmentShader(std::string source);
     void attachGeometryShader(std::string source);
 
-    void link();
+    void destroy();
+
+    bool link();
     void bind();
     void unbind();
+
+    GLuint getRaw();
 };

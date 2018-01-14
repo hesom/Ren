@@ -51,6 +51,9 @@
     <ClCompile Include="C:\Users\hsomm\Desktop\Ren-master\Ren\src\rengine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\graphics\shadermanager.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\debugging\debug.h">
@@ -76,6 +79,9 @@
     </ClInclude>
     <ClInclude Include="include\ui\windowmanager.h">
       <Filter>Header Files\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\shadermanager.h">
+      <Filter>Header Files\graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

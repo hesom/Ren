@@ -1,8 +1,8 @@
 #pragma once
 #include <vector>
 #include <memory>
-#include "keylistener.h"
-#include "mouselistener.h"
+#include "ui/keylistener.h"
+#include "ui/mouselistener.h"
 
 namespace ren
 {

@@ -23,6 +23,7 @@ namespace ren
         
     public:
         Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices);
+        ~Mesh();
         std::vector<Vertex> const &getVertices() const;
         std::vector<unsigned int> const &getIndices() const;
         void setupBuffer();
