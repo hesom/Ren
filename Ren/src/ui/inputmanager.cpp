@@ -6,14 +6,12 @@
 
 namespace ren
 {
+    double InputManager::m_mouseX_old = 0;
+    double InputManager::m_mouseY_old = 0;
+    std::vector<IKeyListener*> InputManager::keyListeners;
+    std::vector<IMouseListener*> InputManager::mouseListeners;
 	InputManager::InputManager()
 	{
-	}
-
-	InputManager& InputManager::getInstance()
-	{
-		static InputManager instance;
-		return instance;
 	}
 
 	void InputManager::handleKeyPressedEvent(const int key, const int mods)
@@ -21,7 +19,6 @@ namespace ren
 		for (auto& listener : keyListeners) {
 			listener->onKeyPressed(mapKey(key), mapMods(mods));
 		}
-
 	}
 
 	void InputManager::handleKeyReleasedEvent(const int key, const int mods)

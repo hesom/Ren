@@ -3,14 +3,9 @@
 
 namespace ren
 {
+    std::map<std::string, std::shared_ptr<ShaderProgram>> ShaderManager::m_shaderMap;
     ShaderManager::ShaderManager()
     {
-    }
-
-    ShaderManager& ShaderManager::getInstance()
-    {
-        static ShaderManager instance;
-        return instance;
     }
 
     ShaderManager::~ShaderManager()

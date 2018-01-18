@@ -46,25 +46,25 @@ namespace ren
 
 		glfwSetKeyCallback(window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
 			if (action == GLFW_PRESS) {
-				InputManager::getInstance().handleKeyPressedEvent(key, mods);
+				InputManager::handleKeyPressedEvent(key, mods);
 			}
 			else if (action == GLFW_RELEASE) {
-				InputManager::getInstance().handleKeyReleasedEvent(key, mods);
+				InputManager::handleKeyReleasedEvent(key, mods);
 			}
 		});
 		glfwSetMouseButtonCallback(window, [](GLFWwindow* window, int button, int action, int mods) {
 			if (action == GLFW_PRESS) {
-				InputManager::getInstance().handleMousePressedEvent(button, mods);
+				InputManager::handleMousePressedEvent(button, mods);
 			}
 			else if (action == GLFW_RELEASE) {
-				InputManager::getInstance().handleMouseReleasedEvent(button, mods);
+				InputManager::handleMouseReleasedEvent(button, mods);
 			}
 		});
 		glfwSetCursorPosCallback(window, [](GLFWwindow* window, double xpos, double ypos) {
-			InputManager::getInstance().handleCursorEvent(xpos, ypos);
+			InputManager::handleCursorEvent(xpos, ypos);
 		});
 		glfwSetScrollCallback(window, [](GLFWwindow* window, double xoffset, double yoffset) {
-			InputManager::getInstance().handleScrollEvent(xoffset, yoffset);
+			InputManager::handleScrollEvent(xoffset, yoffset);
 		});
 
 	}

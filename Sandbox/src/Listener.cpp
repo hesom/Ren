@@ -4,8 +4,8 @@
 
 Listener::Listener()
 {
-	InputManager::getInstance().attachKeyListener(this);
-	InputManager::getInstance().attachMouseListener(this);
+	InputManager::attachKeyListener(this);
+	InputManager::attachMouseListener(this);
 }
 
 void Listener::onKeyPressed(Key key, std::vector<KeyMod> mods)
