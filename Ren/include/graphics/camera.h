@@ -11,17 +11,17 @@ namespace ren
         glm::vec3 m_viewDirection;
         glm::vec3 m_upVector;
         glm::vec3 m_rightVector;
+        float m_yaw;
+        float m_pitch;
 
     public:
         Camera();
-        Camera(glm::vec3 position, glm::vec3 viewDirection);
-        Camera(glm::vec3 position, float pitch, float yaw);
+        Camera(const glm::vec3& position, float pitch, float yaw);
 
-        void setPosition(glm::vec3 position);
+        void setPosition(const glm::vec3& position);
         void setRotation(float pitch, float yaw);
-        void setRotation(glm::vec3 viewDirection);
 
-        void update();
+        virtual void update();
 
         glm::mat4 getViewMatrix();
     };

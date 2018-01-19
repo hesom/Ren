@@ -1,5 +1,6 @@
 #pragma once
 #include "glad/glad.h"
+#include "glm/glm.hpp"
 
 #include <string>
 #include <vector>
@@ -23,6 +24,8 @@ public:
     void attachGeometryShader(std::string source);
 
     void destroy();
+
+    void setUniformMatrix(const std::string& location, const glm::mat4& matrix);
 
     bool link();
     void bind();

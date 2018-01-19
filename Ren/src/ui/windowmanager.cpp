@@ -29,6 +29,8 @@ namespace ren
 		glfwMakeContextCurrent(window);
 		APICALL(gladLoadGLLoader((GLADloadproc)glfwGetProcAddress));
 
+        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
 #ifdef _DEBUG
         GLint flags;
         glGetIntegerv(GL_CONTEXT_FLAGS, &flags);
@@ -46,6 +48,9 @@ namespace ren
 
 		glfwSetKeyCallback(window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
 			if (action == GLFW_PRESS) {
+                if (key == GLFW_KEY_ESCAPE) {
+                    glfwSetWindowShouldClose(window, true);
+                }
 				InputManager::handleKeyPressedEvent(key, mods);
 			}
 			else if (action == GLFW_RELEASE) {

@@ -84,6 +84,9 @@
     <ClCompile Include="src\systems\component.cpp">
       <Filter>Source Files\systems</Filter>
     </ClCompile>
+    <ClCompile Include="src\graphics\projection.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\debugging\debug.h">
@@ -133,6 +136,9 @@
     </ClInclude>
     <ClInclude Include="include\systems\component.h">
       <Filter>Header Files\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\projection.h">
+      <Filter>Header Files\graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

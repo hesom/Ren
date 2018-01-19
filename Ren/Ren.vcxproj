@@ -148,6 +148,7 @@
     <ClCompile Include="src\graphics\camera.cpp" />
     <ClCompile Include="src\graphics\fpscamera.cpp" />
     <ClCompile Include="src\graphics\mesh.cpp" />
+    <ClCompile Include="src\graphics\projection.cpp" />
     <ClCompile Include="src\graphics\shadermanager.cpp" />
     <ClCompile Include="src\graphics\shaderprogram.cpp" />
     <ClCompile Include="src\systems\component.cpp" />
@@ -161,6 +162,7 @@
     <ClInclude Include="include\graphics\camera.h" />
     <ClInclude Include="include\graphics\fpscamera.h" />
     <ClInclude Include="include\graphics\mesh.h" />
+    <ClInclude Include="include\graphics\projection.h" />
     <ClInclude Include="include\graphics\shadermanager.h" />
     <ClInclude Include="include\graphics\shaderprogram.h" />
     <ClInclude Include="include\rengine.h" />

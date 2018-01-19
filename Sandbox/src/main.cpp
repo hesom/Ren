@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 #include <rengine.h>
 
 #include "Listener.h"
@@ -11,8 +12,8 @@ int main()
 	Rengine engine;
 	//Listener listener;
 
-    FPSCamera camera;
-
+    std::shared_ptr<FPSCamera> camera = std::make_shared<FPSCamera>();
+    engine.setMainCamera(camera);
 	//InputManager::detachKeyListener(&listener);
     
 	engine.start();

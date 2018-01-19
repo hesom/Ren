@@ -1,4 +1,5 @@
 #include "graphics/shaderprogram.h"
+#include "glm/gtc/type_ptr.hpp"
 #include <vector>
 #include <iostream>
 
@@ -91,6 +92,12 @@ void ShaderProgram::destroy()
         glDeleteShader(shader);
     }
     glDeleteProgram(m_programId);
+}
+
+void ShaderProgram::setUniformMatrix(const std::string& location, const glm::mat4& matrix)
+{
+    GLuint loc = glGetUniformLocation(m_programId, location.c_str());
+    glUniformMatrix4fv(loc, 1, GL_FALSE, glm::value_ptr(matrix));
 }
 
 bool ShaderProgram::link()
