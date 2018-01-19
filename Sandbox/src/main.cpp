@@ -3,14 +3,17 @@
 
 #include "Listener.h"
 #include "ui/inputmanager.h"
+#include "graphics/fpscamera.h"
 
 int main()
 {
 	using namespace ren;
 	Rengine engine;
-	Listener listener;
+	//Listener listener;
 
-	InputManager::detachKeyListener(&listener);
+    FPSCamera camera;
+
+	//InputManager::detachKeyListener(&listener);
     
 	engine.start();
 }

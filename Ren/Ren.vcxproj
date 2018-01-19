@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -145,21 +145,34 @@
   <ItemGroup>
     <ClCompile Include="C:\Users\hsomm\Desktop\Ren-master\Ren\src\rengine.cpp" />
     <ClCompile Include="src\glad.c" />
+    <ClCompile Include="src\graphics\camera.cpp" />
+    <ClCompile Include="src\graphics\fpscamera.cpp" />
     <ClCompile Include="src\graphics\mesh.cpp" />
     <ClCompile Include="src\graphics\shadermanager.cpp" />
     <ClCompile Include="src\graphics\shaderprogram.cpp" />
+    <ClCompile Include="src\systems\component.cpp" />
+    <ClCompile Include="src\systems\enity.cpp" />
+    <ClCompile Include="src\systems\entitymanager.cpp" />
     <ClCompile Include="src\ui\inputmanager.cpp" />
     <ClCompile Include="src\ui\windowmanager.cpp" />
+    <ClCompile Include="src\util\timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\graphics\camera.h" />
+    <ClInclude Include="include\graphics\fpscamera.h" />
     <ClInclude Include="include\graphics\mesh.h" />
     <ClInclude Include="include\graphics\shadermanager.h" />
     <ClInclude Include="include\graphics\shaderprogram.h" />
+    <ClInclude Include="include\rengine.h" />
+    <ClInclude Include="include\systems\component.h" />
+    <ClInclude Include="include\systems\entity.h" />
+    <ClInclude Include="include\systems\entitymanager.h" />
     <ClInclude Include="include\ui\inputmanager.h" />
     <ClInclude Include="include\ui\keylistener.h" />
     <ClInclude Include="include\ui\keymap.h" />
     <ClInclude Include="include\ui\mouselistener.h" />
     <ClInclude Include="include\ui\windowmanager.h" />
+    <ClInclude Include="include\util\timer.h" />
     <ClInclude Include="src\debugging\debug.h" />
   </ItemGroup>
   <ItemGroup>
