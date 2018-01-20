@@ -153,8 +153,10 @@
     <ClCompile Include="src\graphics\projection.cpp" />
     <ClCompile Include="src\graphics\shadermanager.cpp" />
     <ClCompile Include="src\graphics\shaderprogram.cpp" />
+    <ClCompile Include="src\graphics\texture.cpp" />
     <ClCompile Include="src\ui\inputmanager.cpp" />
     <ClCompile Include="src\ui\windowmanager.cpp" />
+    <ClCompile Include="src\util\stb_image.cpp" />
     <ClCompile Include="src\util\timer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -166,12 +168,14 @@
     <ClInclude Include="include\graphics\projection.h" />
     <ClInclude Include="include\graphics\shadermanager.h" />
     <ClInclude Include="include\graphics\shaderprogram.h" />
+    <ClInclude Include="include\graphics\texture.h" />
     <ClInclude Include="include\rengine.h" />
     <ClInclude Include="include\ui\inputmanager.h" />
     <ClInclude Include="include\ui\keylistener.h" />
     <ClInclude Include="include\ui\keymap.h" />
     <ClInclude Include="include\ui\mouselistener.h" />
     <ClInclude Include="include\ui\windowmanager.h" />
+    <ClInclude Include="include\util\stb_image.h" />
     <ClInclude Include="include\util\timer.h" />
     <ClInclude Include="src\debugging\debug.h" />
   </ItemGroup>

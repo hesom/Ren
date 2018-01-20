@@ -2,6 +2,7 @@
 #include <iostream>
 #include "glm/glm.hpp"
 #include "glad/glad.h"
+#include "util/stb_image.h"
 
 namespace ren
 {
@@ -87,8 +88,47 @@ namespace ren
             
         }
 
-        std::shared_ptr<Mesh> mesh = std::make_shared<Mesh>(vertices, indices);
-        m_entities.push_back(std::make_shared<Entity>(mesh));
+        auto mesh = std::make_shared<Mesh>(vertices, indices);
+
+        //extensions for diffuse, normal and specular map
+        std::string diffExt = "diffuse.jpg";
+        std::string normExt = "normal.jpg";
+        std::string specExt = "specular.jpg";
+
+        std::string diffPath = path;
+        std::string normPath = path;
+        std::string specPath = path;
+
+        auto diffTex = std::make_shared<Texture>();
+        auto normTex = std::make_shared<Texture>();
+        auto specTex = std::make_shared<Texture>();
+
+        auto extIndex = path.rfind('.', path.length());
+        if (extIndex != std::string::npos) {
+            diffPath.replace(extIndex + 1, diffExt.length(), diffExt);
+            normPath.replace(extIndex + 1, normExt.length(), normExt);
+            specPath.replace(extIndex + 1, specExt.length(), specExt);
+        }
+
+        int width, height, channels;
+        unsigned char* diffData = stbi_load(diffPath.c_str(), &width, &height, &channels, 0);
+        diffTex->allocate(width, height, GL_TRUE, GL_RGB8);
+        diffTex->buffer(diffData);
+
+        unsigned char* normData = stbi_load(normPath.c_str(), &width, &height, &channels, 0);
+        normTex->allocate(width, height, GL_TRUE, GL_RGB8);
+        normTex->buffer(normData);
+
+        unsigned char* specData = stbi_load(specPath.c_str(), &width, &height, &channels, 0);
+        specTex->allocate(width, height, GL_TRUE, GL_RGB8);
+        specTex->buffer(specData);
+
+        stbi_image_free(diffData);
+        stbi_image_free(normData);
+        stbi_image_free(specData);
+
+
+        m_entities.push_back(std::make_shared<Entity>(mesh, diffTex, normTex, specTex));
 
         mesh->setupBuffer();
 

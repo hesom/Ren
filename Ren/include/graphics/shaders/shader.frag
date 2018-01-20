@@ -1,12 +1,17 @@
 R"(
 #version 460
 
-in vec3 worldPos;
+in VertexData{
+    smooth vec3 normal;
+    smooth vec2 texCoord;
+};
 out vec4 fragColor;
+
+uniform sampler2D diffuseTex;
 
 void main()
 {
-    fragColor = vec4(worldPos, 1.0f);
+    fragColor = texture(diffuseTex, texCoord);
 }
 
 

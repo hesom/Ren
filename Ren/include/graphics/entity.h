@@ -2,6 +2,7 @@
 
 #include <memory>
 #include "graphics/mesh.h"
+#include "graphics/texture.h"
 #include "glm/glm.hpp"
 
 namespace ren
@@ -11,8 +12,16 @@ namespace ren
     private:
         std::shared_ptr<Mesh> m_mesh;
         glm::mat4 m_transformation;
+        std::shared_ptr<Texture> m_diffuseTex;
+        std::shared_ptr<Texture> m_normalTex;
+        std::shared_ptr<Texture> m_specularTex;
+
     public:
-        Entity(std::shared_ptr<Mesh> mesh, glm::mat4 transformation = glm::mat4(0.0f));
+        Entity(
+            std::shared_ptr<Mesh> mesh,
+            std::shared_ptr<Texture> diffuseTex,
+            std::shared_ptr<Texture> normalTex,
+            std::shared_ptr<Texture> specularTex);
         void setTransformation(glm::mat4 transformation);
         void render();
     };
