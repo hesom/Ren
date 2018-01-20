@@ -55,9 +55,7 @@ namespace ren
 
     void Mesh::draw()
     {
-        glEnable(GL_DEPTH_TEST);
         glBindVertexArray(m_vao);
         glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, (void*)0);
-        glDisable(GL_DEPTH_TEST);
     }
 }

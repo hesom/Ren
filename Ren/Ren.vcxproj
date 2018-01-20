@@ -76,7 +76,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(ProjectDir)\include;$(ProjectDir)\libs\glad;$(ProjectDir)\libs\glfw-3.2.1\include;$(ProjectDir)\libs\KHR;$(ProjectDir)\libs\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>GLFW_INCLUDE_NONE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Lib>
       <AdditionalDependencies>glfw-3.2.1\lib\glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -91,7 +91,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(ProjectDir)\include;$(ProjectDir)\libs\glad;$(ProjectDir)\libs\glfw-3.2.1\include;$(ProjectDir)\libs\KHR;$(ProjectDir)\libs\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>GLFW_INCLUDE_NONE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Lib>
       <AdditionalDependencies>glfw-3.2.1\lib\glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -108,7 +108,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(ProjectDir)\include;$(ProjectDir)\libs\glad;$(ProjectDir)\libs\glfw-3.2.1\include;$(ProjectDir)\libs\KHR;$(ProjectDir)\libs\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>GLFW_INCLUDE_NONE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -129,7 +129,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(ProjectDir)\include;$(ProjectDir)\libs\glad;$(ProjectDir)\libs\glfw-3.2.1\include;$(ProjectDir)\libs\KHR;$(ProjectDir)\libs\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>GLFW_INCLUDE_NONE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -146,29 +146,27 @@
     <ClCompile Include="C:\Users\hsomm\Desktop\Ren-master\Ren\src\rengine.cpp" />
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\graphics\camera.cpp" />
+    <ClCompile Include="src\graphics\entity.cpp" />
+    <ClCompile Include="src\graphics\entitymanager.cpp" />
     <ClCompile Include="src\graphics\fpscamera.cpp" />
     <ClCompile Include="src\graphics\mesh.cpp" />
     <ClCompile Include="src\graphics\projection.cpp" />
     <ClCompile Include="src\graphics\shadermanager.cpp" />
     <ClCompile Include="src\graphics\shaderprogram.cpp" />
-    <ClCompile Include="src\systems\component.cpp" />
-    <ClCompile Include="src\systems\enity.cpp" />
-    <ClCompile Include="src\systems\entitymanager.cpp" />
     <ClCompile Include="src\ui\inputmanager.cpp" />
     <ClCompile Include="src\ui\windowmanager.cpp" />
     <ClCompile Include="src\util\timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\graphics\camera.h" />
+    <ClInclude Include="include\graphics\entity.h" />
+    <ClInclude Include="include\graphics\entitymanager.h" />
     <ClInclude Include="include\graphics\fpscamera.h" />
     <ClInclude Include="include\graphics\mesh.h" />
     <ClInclude Include="include\graphics\projection.h" />
     <ClInclude Include="include\graphics\shadermanager.h" />
     <ClInclude Include="include\graphics\shaderprogram.h" />
     <ClInclude Include="include\rengine.h" />
-    <ClInclude Include="include\systems\component.h" />
-    <ClInclude Include="include\systems\entity.h" />
-    <ClInclude Include="include\systems\entitymanager.h" />
     <ClInclude Include="include\ui\inputmanager.h" />
     <ClInclude Include="include\ui\keylistener.h" />
     <ClInclude Include="include\ui\keymap.h" />

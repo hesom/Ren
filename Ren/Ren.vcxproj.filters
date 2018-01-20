@@ -37,12 +37,6 @@
     <Filter Include="Source Files\util">
       <UniqueIdentifier>{96f72657-ea68-4032-b2dd-b56236351a76}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\systems">
-      <UniqueIdentifier>{e04f36b1-14d4-4411-81c9-5787f69075fe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\systems">
-      <UniqueIdentifier>{ade5395a-76bc-4d84-8bdf-1c4b7555a287}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\graphics\mesh.cpp">
@@ -75,16 +69,13 @@
     <ClCompile Include="src\util\timer.cpp">
       <Filter>Source Files\util</Filter>
     </ClCompile>
-    <ClCompile Include="src\systems\entitymanager.cpp">
-      <Filter>Source Files\systems</Filter>
-    </ClCompile>
-    <ClCompile Include="src\systems\enity.cpp">
-      <Filter>Source Files\systems</Filter>
-    </ClCompile>
-    <ClCompile Include="src\systems\component.cpp">
-      <Filter>Source Files\systems</Filter>
-    </ClCompile>
     <ClCompile Include="src\graphics\projection.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\entitymanager.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\entity.cpp">
       <Filter>Source Files\graphics</Filter>
     </ClCompile>
   </ItemGroup>
@@ -128,16 +119,13 @@
     <ClInclude Include="include\rengine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\systems\entitymanager.h">
-      <Filter>Header Files\systems</Filter>
-    </ClInclude>
-    <ClInclude Include="include\systems\entity.h">
-      <Filter>Header Files\systems</Filter>
-    </ClInclude>
-    <ClInclude Include="include\systems\component.h">
-      <Filter>Header Files\systems</Filter>
-    </ClInclude>
     <ClInclude Include="include\graphics\projection.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\entitymanager.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\entity.h">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
   </ItemGroup>
