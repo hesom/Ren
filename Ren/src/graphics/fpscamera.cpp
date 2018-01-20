@@ -22,12 +22,12 @@ namespace ren
         InputManager::detachMouseListener(this);
     }
 
-    void FPSCamera::setCameraSpeed(float speed)
+    auto FPSCamera::setCameraSpeed(float speed) -> void
     {
         m_cameraSpeed = speed;
     }
 
-    void FPSCamera::onKeyPressed(Key key, std::vector<KeyMod> mods)
+    auto FPSCamera::onKeyPressed(Key key, std::vector<KeyMod> mods) -> void
     {
         switch (key) {
         case Key::KEY_W:
@@ -56,7 +56,7 @@ namespace ren
         }
     }
 
-    void FPSCamera::onKeyReleased(Key key, std::vector<KeyMod> mods)
+    auto FPSCamera::onKeyReleased(Key key, std::vector<KeyMod> mods) -> void
     {
         switch (key) {
         case Key::KEY_W:
@@ -89,21 +89,21 @@ namespace ren
         }
     }
 
-    void FPSCamera::onMousePressed(MouseButton button, std::vector<KeyMod> mods)
+    auto FPSCamera::onMousePressed(MouseButton button, std::vector<KeyMod> mods) -> void
     {
         if (button == MouseButton::MOUSE_1) {
             m_leftMouseDown = true;
         }
     }
 
-    void FPSCamera::onMouseReleased(MouseButton button, std::vector<KeyMod> mods)
+    auto FPSCamera::onMouseReleased(MouseButton button, std::vector<KeyMod> mods) -> void
     {
         if (button == MouseButton::MOUSE_1) {
             m_leftMouseDown = false;
         }
     }
 
-    void FPSCamera::onMouseMoved(double xpos, double ypos, double dx, double dy)
+    auto FPSCamera::onMouseMoved(double xpos, double ypos, double dx, double dy) -> void
     {
         float sensitivity = 0.5f;
         m_yaw += (dx*sensitivity);
@@ -116,11 +116,11 @@ namespace ren
         }
     }
 
-    void FPSCamera::onMouseScroll(double xoffset, double yoffset)
+    auto FPSCamera::onMouseScroll(double xoffset, double yoffset) -> void
     {
     }
 
-    void FPSCamera::update()
+    auto FPSCamera::update() -> void
     {
         float speed = m_cameraSpeed * Timer::deltaTime();
         if (m_forwardPressed) {

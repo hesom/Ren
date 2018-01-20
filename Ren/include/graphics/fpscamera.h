@@ -21,14 +21,14 @@ namespace ren
         FPSCamera();
         FPSCamera(glm::vec3 position, float pitch, float yaw);
         ~FPSCamera();
-        void setCameraSpeed(float speed);
-        void onKeyPressed(Key key, std::vector<KeyMod> mods) override;
-        void onKeyReleased(Key key, std::vector<KeyMod> mods) override;
-        void onMousePressed(MouseButton button, std::vector<KeyMod> mods) override;
-        void onMouseReleased(MouseButton button, std::vector<KeyMod> mods) override;
-        void onMouseMoved(double xpos, double ypos, double dx, double dy) override;
-        void onMouseScroll(double xoffset, double yoffset) override;
+        auto setCameraSpeed(float speed) -> void;
+        auto onKeyPressed(Key key, std::vector<KeyMod> mods) -> void override;
+        auto onKeyReleased(Key key, std::vector<KeyMod> mods) -> void override;
+        auto onMousePressed(MouseButton button, std::vector<KeyMod> mods) -> void override;
+        auto onMouseReleased(MouseButton button, std::vector<KeyMod> mods) -> void override;
+        auto onMouseMoved(double xpos, double ypos, double dx, double dy) -> void override;
+        auto onMouseScroll(double xoffset, double yoffset) -> void override;
 
-        void update();
+        auto update() -> void;
     };
 }

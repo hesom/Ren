@@ -19,9 +19,9 @@ namespace ren
             GLboolean mipmaps,
             GLenum internalFormat
         );
-        void buffer(const unsigned char* data);
-        void bind();
-        void bind(GLuint textureUnit);
-        void unbind();
+        auto buffer(const unsigned char* data) -> void;
+        auto bind() -> void;
+        auto bind(GLuint textureUnit) -> void;
+        auto unbind() -> void;
     };
 }

@@ -19,17 +19,17 @@ private:
     
 public:
     ShaderProgram();
-    void attachVertexShader(std::string source);
-    void attachFragmentShader(std::string source);
-    void attachGeometryShader(std::string source);
+    auto attachVertexShader(std::string source) -> void;
+    auto attachFragmentShader(std::string source) -> void;
+    auto attachGeometryShader(std::string source) -> void;
 
-    void destroy();
+    auto destroy() -> void;
 
-    void setUniformMatrix(const std::string& location, const glm::mat4& matrix);
+    auto setUniformMatrix(const std::string& location, const glm::mat4& matrix) -> void;
 
-    bool link();
-    void bind();
-    void unbind();
+    auto link() -> bool;
+    auto bind() -> void;
+    auto unbind() -> void;
 
-    GLuint getRaw();
+    auto getRaw() -> GLuint;
 };

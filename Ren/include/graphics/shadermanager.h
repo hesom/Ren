@@ -15,10 +15,10 @@ namespace ren
         ~ShaderManager();
         ShaderManager(ShaderManager const&) = delete;
         void operator=(ShaderManager const&) = delete;
-        static void add(std::shared_ptr<ShaderProgram> shaderProgram, std::string name);
-        static void add(std::string vertexShader, std::string fragmentShader, std::string name);
-        static void add(std::string vertexShader, std::string geometryShader, std::string fragmentShader, std::string name);
-        static std::shared_ptr<ShaderProgram> get(std::string name);
-        static GLuint getRaw(std::string name);
+        static auto add(std::shared_ptr<ShaderProgram> shaderProgram, std::string name) -> void;
+        static auto add(std::string vertexShader, std::string fragmentShader, std::string name) -> void;
+        static auto add(std::string vertexShader, std::string geometryShader, std::string fragmentShader, std::string name) -> void;
+        static auto get(std::string name) -> std::shared_ptr<ShaderProgram>;
+        static auto getRaw(std::string name) -> GLuint;
     };
 }

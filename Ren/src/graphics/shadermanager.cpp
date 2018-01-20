@@ -4,6 +4,7 @@
 namespace ren
 {
     std::map<std::string, std::shared_ptr<ShaderProgram>> ShaderManager::m_shaderMap;
+
     ShaderManager::ShaderManager()
     {
     }
@@ -16,12 +17,12 @@ namespace ren
         }
     }
 
-    void ShaderManager::add(std::shared_ptr<ShaderProgram> shaderProgram, std::string name)
+    auto ShaderManager::add(std::shared_ptr<ShaderProgram> shaderProgram, std::string name) -> void
     {
         m_shaderMap[name] = shaderProgram;
     }
 
-    void ShaderManager::add(std::string vertexShader, std::string fragmentShader, std::string name)
+    auto ShaderManager::add(std::string vertexShader, std::string fragmentShader, std::string name) -> void
     {
         auto shaderProgram = std::make_shared<ShaderProgram>();
         shaderProgram->attachVertexShader(vertexShader);
@@ -30,7 +31,7 @@ namespace ren
         m_shaderMap[name] = shaderProgram;
     }
 
-    void ShaderManager::add(std::string vertexShader, std::string geometryShader, std::string fragmentShader, std::string name)
+    auto ShaderManager::add(std::string vertexShader, std::string geometryShader, std::string fragmentShader, std::string name) -> void
     {
         auto shaderProgram = std::make_shared<ShaderProgram>();
         shaderProgram->attachVertexShader(vertexShader);
@@ -42,7 +43,7 @@ namespace ren
         m_shaderMap[name] = shaderProgram;
     }
 
-    std::shared_ptr<ShaderProgram> ShaderManager::get(std::string name)
+    auto ShaderManager::get(std::string name) -> std::shared_ptr<ShaderProgram>
     {
         if (!m_shaderMap.count(name)) {
             return nullptr;
@@ -50,7 +51,7 @@ namespace ren
         return m_shaderMap.at(name);
     }
 
-    GLuint ShaderManager::getRaw(std::string name)
+    auto ShaderManager::getRaw(std::string name) -> GLuint
     {
         if (!m_shaderMap.count(name)) {
             return -1;

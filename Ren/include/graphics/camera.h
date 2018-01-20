@@ -18,12 +18,12 @@ namespace ren
         Camera();
         Camera(const glm::vec3& position, float pitch, float yaw);
 
-        void setPosition(const glm::vec3& position);
-        void setRotation(float pitch, float yaw);
+        auto setPosition(const glm::vec3& position) -> void;
+        auto setRotation(float pitch, float yaw) -> void;
 
-        virtual void update();
+        virtual auto update() -> void;
 
-        glm::mat4 getViewMatrix();
+        auto getViewMatrix() -> glm::mat4;
     };
 }
 

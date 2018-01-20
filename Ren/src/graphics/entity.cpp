@@ -15,12 +15,12 @@ namespace ren
         m_transformation = glm::mat4(1.0f);
     }
 
-    void Entity::setTransformation(glm::mat4 transformation)
+    auto Entity::setTransformation(glm::mat4 transformation) -> void
     {
         m_transformation = transformation;
     }
 
-    void Entity::render()
+    auto Entity::render() -> void
     {
         glm::mat4 normalMatrix = glm::transpose(glm::inverse(m_transformation));
         ShaderManager::get("BasicShader")->setUniformMatrix("modelMatrix", m_transformation);

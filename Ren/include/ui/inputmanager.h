@@ -25,65 +25,65 @@ namespace ren
 			\param key the glfw key id
 			\param mods the glfw mod keys pressed, encoded in a single int (shift, alt, etc)
 		*/
-		static void handleKeyPressedEvent(const int key, const int mods);
+		static auto handleKeyPressedEvent(const int key, const int mods) -> void;
 
 		/*! Handles the single event after a key is released.
 			\param key the glfw key id
 			\param mods the glfw mod keys pressed, encoded in a single int (shift, alt, etc)
 		*/
-		static void handleKeyReleasedEvent(const int key, const int mods);
+		static auto handleKeyReleasedEvent(const int key, const int mods) -> void;
 
 		/*! Handles the single event after a key is pressed.
 			\param button the glfw mouse button id
 			\param mods the glfw mod keys pressed, encoded in a single int (shift, alt, etc)
 		*/
-		static void handleMousePressedEvent(const int button, const int mods);
+		static auto handleMousePressedEvent(const int button, const int mods) -> void;
 
 		/*! Handles the single event after a key is released.
 			\param key the glfw key id
 			\param mods the glfw mod keys pressed, encoded in a single int (shift, alt, etc)
 		*/
-		static void handleMouseReleasedEvent(const int button, const int mods);
+		static auto handleMouseReleasedEvent(const int button, const int mods) -> void;
 
 		/*! Handles the event after the mouse is released.
 			\param xpos the x position of the mouse. 0 is top left of the window
 			\param ypos the y position of the mouse. 0 is top left of the window
 		*/
-		static void handleCursorEvent(const double xpos, const double ypos);
+		static auto handleCursorEvent(const double xpos, const double ypos) -> void;
 
 		/*! Handles the event after scrolling with the mouse wheel 
 			\param xoffset how far the mouse wheel was scrolled from left to right 
 			\param yoffset how far the mouse wheel was scrolled from top to bottom
 		*/
-		static void handleScrollEvent(const double xoffset, const double yoffset);
+		static auto handleScrollEvent(const double xoffset, const double yoffset) -> void;
 
 		/*! Attaches a IMouseListener that gets notified each time a mouse event occurs
 			\param mouseListener pointer to the IMouseListener to be attached
 		*/
-		static void attachMouseListener (IMouseListener* mouseListener);
+		static auto attachMouseListener (IMouseListener* mouseListener) -> void;
 
 		/*! Detaches a IMouseListener to unsubscribed from event notifications
 			\param mouseListener pointer to the IMouseListener to be detached
 		*/
-		static void detachMouseListener(const IMouseListener* mouseListener);
+		static auto detachMouseListener(const IMouseListener* mouseListener) -> void;
 
 		/*! Attaches a IKeyListener that gets notified each time a keyboard event occurs
 			\param keyListener pointer to the IKeyListener to be attached
 		*/
-		static void attachKeyListener(IKeyListener* keyListener);
+		static auto attachKeyListener(IKeyListener* keyListener) -> void;
 
 		/*! Detaches a IKeyListener to unsubscribed from event notifications
 			\param keyListener pointer to the IKeyListener to be detached
 		*/
-		static void detachKeyListener(const IKeyListener* keyListener);
+		static auto detachKeyListener(const IKeyListener* keyListener) -> void;
 
 	private:
 		/*! Maps glfw key enum values to a safer internal enum class format */
-		static Key mapKey(int glfwKey);
+		static auto mapKey(int glfwKey) -> Key;
 		/*! Maps glfw mod enum values to a safer internal enum class format */
-		static std::vector<KeyMod> mapMods(int glfwMod);
+		static auto mapMods(int glfwMod) -> std::vector<KeyMod>;
 		/*! Maps glfw mouse button enum values to a safer internal enum class format */
-		static MouseButton mapMouse(int glfwMouse);
+		static auto mapMouse(int glfwMouse) -> MouseButton;
 	};
 
 	

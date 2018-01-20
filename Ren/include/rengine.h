@@ -11,12 +11,12 @@ namespace ren
     private:
         std::shared_ptr<Camera> m_mainCamera;
         Projection m_projection;
-        void createWindow();
+        auto createWindow() -> void;
     public:
         Rengine();
 
-        void setMainCamera(std::shared_ptr<Camera> camera);
-        void start();
+        auto setMainCamera(std::shared_ptr<Camera> camera) -> void;
+        auto start() -> void;
     };
 }
 

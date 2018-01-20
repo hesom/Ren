@@ -8,7 +8,7 @@ namespace ren
         glDeleteTextures(1, &m_textureID);
     }
 
-    void Texture::allocate(GLuint width, GLuint height, GLboolean mipmaps, GLenum internalFormat)
+    auto Texture::allocate(GLuint width, GLuint height, GLboolean mipmaps, GLenum internalFormat) -> void
     {
         m_width = width;
         m_height = height;
@@ -26,25 +26,25 @@ namespace ren
         glTexStorage2D(GL_TEXTURE_2D, levels, internalFormat, m_width, m_height);
     }
 
-    void Texture::buffer(const unsigned char * data)
+    auto Texture::buffer(const unsigned char* data) -> void
     {
         glBindTexture(GL_TEXTURE_2D, m_textureID);
         glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_width, m_height, GL_RGB, GL_UNSIGNED_BYTE, data);
         glGenerateMipmap(GL_TEXTURE_2D);
     }
 
-    void Texture::bind()
+    auto Texture::bind() -> void
     {
         glBindTexture(GL_TEXTURE_2D, m_textureID);
     }
 
-    void Texture::bind(GLuint textureUnit)
+    auto Texture::bind(GLuint textureUnit) -> void
     {
         glActiveTexture(GL_TEXTURE0 + textureUnit);
         glBindTexture(GL_TEXTURE_2D, m_textureID);
     }
 
-    void Texture::unbind()
+    auto Texture::unbind() -> void
     {
         glBindTexture(GL_TEXTURE_2D, 0);
     }

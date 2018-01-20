@@ -24,10 +24,10 @@ namespace ren
     public:
         Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices);
         ~Mesh();
-        std::vector<Vertex> const &getVertices() const;
-        std::vector<unsigned int> const &getIndices() const;
-        void setupBuffer();
-        void freeBuffer();
-        void draw();
+        auto getVertices() const -> const decltype(m_vertices)&;
+        auto getIndices() const -> const decltype(m_indices)&;
+        auto setupBuffer() -> void;
+        auto freeBuffer() -> void;
+        auto draw() -> void;
     };
 }

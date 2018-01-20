@@ -7,9 +7,11 @@
 namespace ren
 {
     class Entity;
-    std::vector<std::shared_ptr<Entity>> EntityManager::m_entities;
 
-    size_t EntityManager::loadFromOBJ(std::string path)
+    std::vector<std::shared_ptr<Entity>> EntityManager::m_entities;
+    std::vector<std::shared_ptr<DirectionalLight>> EntityManager::m_directionalLights;
+
+    auto EntityManager::loadFromOBJ(std::string path) -> std::shared_ptr<Entity>
     {
         //http://www.opengl-tutorial.org/beginners-tutorials/tutorial-7-model-loading/
 
@@ -70,7 +72,7 @@ namespace ren
         }
         else {
             std::cout << "Impossible to open the file!" << std::endl;
-            return -1;
+            return nullptr;
         }
 
         for (unsigned int i = 0; i < vertexIndices.size(); i++) {
@@ -132,15 +134,21 @@ namespace ren
 
         mesh->setupBuffer();
 
-        return m_entities.size() - 1;
+        return m_entities.at(m_entities.size()-1);
     }
 
-    std::shared_ptr<Entity> EntityManager::get(size_t handle)
+    auto EntityManager::addDirectionalLight(glm::vec3 position, float intensity) -> std::shared_ptr<DirectionalLight>
+    {
+        m_directionalLights.push_back(std::make_shared<DirectionalLight>(position, intensity));
+        return m_directionalLights.at(m_directionalLights.size()-1);
+    }
+
+    auto EntityManager::get(size_t handle) -> std::shared_ptr<Entity>
     {
         return m_entities.at(handle);
     }
 
-    void EntityManager::render()
+    auto EntityManager::render() -> void
     {
         glEnable(GL_DEPTH_TEST);
         for (auto entity : m_entities) {

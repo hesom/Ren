@@ -9,7 +9,7 @@ namespace ren
         static float m_lastFrame;
         Timer();
     public:
-        static void tick();
-        static float deltaTime();
+        static auto tick() -> void;
+        static auto deltaTime() -> decltype(m_deltaTime);
     };
 }

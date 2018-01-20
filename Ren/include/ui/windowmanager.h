@@ -14,19 +14,19 @@ namespace ren {
 	private:
 		static GLFWwindow* window;
 #ifdef _DEBUG
-        static void debugSetup();
+        static auto debugSetup() -> void;
 #endif
 		WindowManager() {}
 		
 	public:
-		static bool init();
-		static void createWindow(
+		static auto init() -> bool;
+		static auto createWindow(
 			const int width,
 			const int height,
-			const std::string title);
-		static void destroyWindow();
-		static bool exitRequested();
-		static void updateWindow();
+			const std::string title) -> void;
+		static auto destroyWindow() -> void;
+		static auto exitRequested() -> bool;
+		static auto updateWindow() -> void;
 
 		WindowManager(WindowManager const&) = delete;
 		void operator=(WindowManager const&) = delete;

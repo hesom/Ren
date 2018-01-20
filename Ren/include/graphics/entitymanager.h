@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include "graphics/entity.h"
+#include "graphics/directionallight.h"
 
 namespace ren
 {
@@ -10,11 +11,13 @@ namespace ren
     private:
 
         static std::vector<std::shared_ptr<Entity>> m_entities;
+        static std::vector<std::shared_ptr<DirectionalLight>> m_directionalLights;
         EntityManager();
 
     public:
-        static size_t loadFromOBJ(std::string path);
-        static std::shared_ptr<Entity> get(size_t handle);
-        static void render();
+        static auto loadFromOBJ(std::string path) -> std::shared_ptr<Entity>;
+        static auto addDirectionalLight(glm::vec3 position, float intensity = 1.0f) -> std::shared_ptr<DirectionalLight>;
+        static auto get(size_t handle) -> std::shared_ptr<Entity>;
+        static auto render() -> void;
     };
 }

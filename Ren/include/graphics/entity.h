@@ -22,7 +22,7 @@ namespace ren
             std::shared_ptr<Texture> diffuseTex,
             std::shared_ptr<Texture> normalTex,
             std::shared_ptr<Texture> specularTex);
-        void setTransformation(glm::mat4 transformation);
-        void render();
+        auto setTransformation(glm::mat4 transformation) -> void;
+        auto render() -> void;
     };
 }

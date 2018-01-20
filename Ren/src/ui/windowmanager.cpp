@@ -9,12 +9,12 @@ namespace ren
 
 	GLFWwindow* WindowManager::window;
 
-	bool WindowManager::init()
+	auto WindowManager::init() -> bool
 	{
 		return glfwInit();
 	}
 
-	void WindowManager::createWindow(const int width, const int height, const std::string title)
+	auto WindowManager::createWindow(const int width, const int height, const std::string title) -> void
 	{
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
@@ -74,17 +74,17 @@ namespace ren
 
 	}
 
-	void WindowManager::destroyWindow()
+	auto WindowManager::destroyWindow() -> void
 	{
 		glfwDestroyWindow(window);
 	}
 
-	bool WindowManager::exitRequested()
+	auto WindowManager::exitRequested() -> bool
 	{
 		return glfwWindowShouldClose(window);
 	}
 
-	void WindowManager::updateWindow()
+	auto WindowManager::updateWindow() -> void
 	{
 		glfwPollEvents();
 		glfwSwapBuffers(window);
@@ -92,7 +92,7 @@ namespace ren
 	}
 
 #ifdef _DEBUG
-    void WindowManager::debugSetup()
+    auto WindowManager::debugSetup() -> void
     {
         glEnable(GL_DEBUG_OUTPUT);
         glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);

@@ -13,17 +13,17 @@ namespace ren
         this->freeBuffer();
     }
 
-    std::vector<Vertex> const &Mesh::getVertices() const
+    auto Mesh::getVertices() const -> const decltype(m_vertices)&
     {
         return m_vertices;
     }
 
-    std::vector<unsigned int> const &Mesh::getIndices() const
+    auto Mesh::getIndices() const -> const decltype(m_indices)&
     {
         return m_indices;
     }
 
-    void Mesh::setupBuffer()
+    auto Mesh::setupBuffer() -> void
     {
         glGenVertexArrays(1, &m_vao);
         glGenBuffers(1, &m_vbo);
@@ -46,14 +46,14 @@ namespace ren
         glBindVertexArray(0);
     }
 
-    void Mesh::freeBuffer()
+    auto Mesh::freeBuffer() -> void
     {
         glDeleteVertexArrays(1, &m_vao);
         glDeleteBuffers(1, &m_vbo);
         glDeleteBuffers(1, &m_ebo);
     }
 
-    void Mesh::draw()
+    auto Mesh::draw() -> void
     {
         glBindVertexArray(m_vao);
         glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, (void*)0);

@@ -16,7 +16,7 @@ int main()
 
     std::shared_ptr<FPSCamera> camera = std::make_shared<FPSCamera>();
     engine.setMainCamera(camera);
-    size_t well = EntityManager::loadFromOBJ("well.obj");
+    auto well = EntityManager::loadFromOBJ("well.obj");
 	//InputManager::detachKeyListener(&listener);
     
 	engine.start();

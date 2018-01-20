@@ -11,10 +11,10 @@ namespace ren
 	class IMouseListener
 	{
 	public:
-		virtual void onMousePressed(MouseButton button, std::vector<KeyMod> mods) = 0;
-		virtual void onMouseReleased(MouseButton button, std::vector<KeyMod> mods) = 0;
-		virtual void onMouseMoved(double xpos, double ypos, double dx, double dy) = 0;
-		virtual void onMouseScroll(double xoffset, double yoffset) = 0;
+		virtual auto onMousePressed(MouseButton button, std::vector<KeyMod> mods) -> void = 0;
+		virtual auto onMouseReleased(MouseButton button, std::vector<KeyMod> mods) -> void = 0;
+		virtual auto onMouseMoved(double xpos, double ypos, double dx, double dy) -> void = 0;
+		virtual auto onMouseScroll(double xoffset, double yoffset) -> void = 0;
 	};
 }
 

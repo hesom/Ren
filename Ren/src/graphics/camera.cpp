@@ -31,12 +31,12 @@ namespace ren
         ));
     }
 
-    void Camera::setPosition(const glm::vec3& position)
+    auto Camera::setPosition(const glm::vec3& position) -> void
     {
         m_position = position;
     }
 
-    void Camera::setRotation(float pitch, float yaw)
+    auto Camera::setRotation(float pitch, float yaw) -> void
     {
         m_yaw = yaw;
         m_pitch = pitch;
@@ -47,7 +47,7 @@ namespace ren
         ));
     }
 
-    glm::mat4 Camera::getViewMatrix()
+    auto Camera::getViewMatrix() -> glm::mat4
     {
         m_viewDirection = glm::normalize(glm::vec3(
             glm::cos(glm::radians(m_pitch))*glm::sin(glm::radians(m_yaw)),
@@ -57,7 +57,7 @@ namespace ren
         return glm::lookAt(m_position, m_position + m_viewDirection, m_upVector);
     }
 
-    void Camera::update()
+    auto Camera::update() -> void
     {
 
     }

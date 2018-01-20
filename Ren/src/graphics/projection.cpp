@@ -21,7 +21,7 @@ namespace ren
     {
     }
 
-    glm::mat4 Projection::getProjectionMatrix()
+    auto Projection::getProjectionMatrix() -> glm::mat4
     {
         return glm::perspectiveFov(
             glm::radians(m_fov),

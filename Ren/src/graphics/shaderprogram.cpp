@@ -3,7 +3,7 @@
 #include <vector>
 #include <iostream>
 
-bool ShaderProgram::verifyShader(GLuint shaderId)
+auto ShaderProgram::verifyShader(GLuint shaderId) -> bool
 {
     //copied from https://www.khronos.org/opengl/wiki/Shader_Compilation
     GLint success = 0;
@@ -23,7 +23,7 @@ bool ShaderProgram::verifyShader(GLuint shaderId)
     return true;
 }
 
-bool ShaderProgram::verifyProgram(GLuint programId)
+auto ShaderProgram::verifyProgram(GLuint programId) -> bool
 {
     GLint isLinked = 0;
     glGetProgramiv(programId, GL_LINK_STATUS, (int*)&isLinked);
@@ -47,7 +47,7 @@ ShaderProgram::ShaderProgram()
     m_programId = glCreateProgram();
 }
 
-void ShaderProgram::attachVertexShader(std::string source)
+auto ShaderProgram::attachVertexShader(std::string source) -> void
 {
     GLuint vertexShaderId = glCreateShader(GL_VERTEX_SHADER);
     const char *c_str = source.c_str();
@@ -60,7 +60,7 @@ void ShaderProgram::attachVertexShader(std::string source)
     m_attachedShaders.push_back(vertexShaderId);
 }
 
-void ShaderProgram::attachFragmentShader(std::string source)
+auto ShaderProgram::attachFragmentShader(std::string source) -> void
 {
     GLuint fragmentShaderId = glCreateShader(GL_FRAGMENT_SHADER);
     const char *c_str = source.c_str();
@@ -73,7 +73,7 @@ void ShaderProgram::attachFragmentShader(std::string source)
     m_attachedShaders.push_back(fragmentShaderId);
 }
 
-void ShaderProgram::attachGeometryShader(std::string source)
+auto ShaderProgram::attachGeometryShader(std::string source) -> void
 {
     GLuint geometryShaderId = glCreateShader(GL_GEOMETRY_SHADER);
     const char *c_str = source.c_str();
@@ -86,7 +86,7 @@ void ShaderProgram::attachGeometryShader(std::string source)
     m_attachedShaders.push_back(geometryShaderId);
 }
 
-void ShaderProgram::destroy()
+auto ShaderProgram::destroy() -> void
 {
     for (auto shader : m_attachedShaders) {
         glDeleteShader(shader);
@@ -94,13 +94,13 @@ void ShaderProgram::destroy()
     glDeleteProgram(m_programId);
 }
 
-void ShaderProgram::setUniformMatrix(const std::string& location, const glm::mat4& matrix)
+auto ShaderProgram::setUniformMatrix(const std::string& location, const glm::mat4& matrix) -> void
 {
     GLuint loc = glGetUniformLocation(m_programId, location.c_str());
     glUniformMatrix4fv(loc, 1, GL_FALSE, glm::value_ptr(matrix));
 }
 
-bool ShaderProgram::link()
+auto ShaderProgram::link() -> bool
 {
     glLinkProgram(m_programId);
 
@@ -119,19 +119,19 @@ bool ShaderProgram::link()
     return m_valid;
 }
 
-void ShaderProgram::bind()
+auto ShaderProgram::bind() -> void
 {
     if (m_valid) {
         glUseProgram(m_programId);
     }
 }
 
-void ShaderProgram::unbind()
+auto ShaderProgram::unbind() -> void
 {
     glUseProgram(0);
 }
 
-GLuint ShaderProgram::getRaw()
+auto ShaderProgram::getRaw() -> GLuint
 {
     return m_programId;
 }

@@ -5,14 +5,14 @@ namespace ren
     float Timer::m_deltaTime(0);
     float Timer::m_lastFrame = glfwGetTime();
 
-    void Timer::tick()
+    auto Timer::tick() -> void
     {
         float currentFrame = glfwGetTime();
         m_deltaTime = currentFrame - m_lastFrame;
         m_lastFrame = currentFrame;
     }
 
-    float Timer::deltaTime()
+    auto Timer::deltaTime() -> decltype(m_deltaTime)
     {
         return m_deltaTime;
     }
