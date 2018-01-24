@@ -19,6 +19,7 @@ namespace ren
         Camera(const glm::vec3& position, float pitch, float yaw);
 
         auto setPosition(const glm::vec3& position) -> void;
+        auto getPosition() const -> const decltype(m_position)&;
         auto setRotation(float pitch, float yaw) -> void;
 
         virtual auto update() -> void;

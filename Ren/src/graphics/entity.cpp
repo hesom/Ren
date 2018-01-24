@@ -2,17 +2,15 @@
 #include "graphics/shadermanager.h"
 namespace ren
 {
-    Entity::Entity(
-        std::shared_ptr<Mesh> mesh,
-        std::shared_ptr<Texture> diffuseTex,
-        std::shared_ptr<Texture> normalTex,
-        std::shared_ptr<Texture> specularTex) :
-        m_mesh(mesh),
-        m_diffuseTex(diffuseTex),
-        m_normalTex(normalTex),
-        m_specularTex(specularTex)
+    Entity::Entity(std::string path)
     {
+        m_model = std::make_shared<Model>(path.c_str());
         m_transformation = glm::mat4(1.0f);
+        m_shader = "BasicShader";
+    }
+
+    auto Entity::setShader(std::string shader) -> void
+    {
     }
 
     auto Entity::setTransformation(glm::mat4 transformation) -> void
@@ -20,14 +18,14 @@ namespace ren
         m_transformation = transformation;
     }
 
-    auto Entity::render() -> void
+    auto Entity::getTransformation() -> const decltype(m_transformation)&
     {
-        glm::mat4 normalMatrix = glm::transpose(glm::inverse(m_transformation));
-        ShaderManager::get("BasicShader")->setUniformMatrix("modelMatrix", m_transformation);
-        ShaderManager::get("BasicShader")->setUniformMatrix("normalMatrix", normalMatrix);
-        
-        m_diffuseTex->bind(0);
-        m_mesh->draw();
+        return m_transformation;
+    }
+
+    auto Entity::render() -> void
+    {   
+        m_model->render(m_shader);
     }
 }
 

@@ -87,6 +87,12 @@
     <ClCompile Include="src\graphics\directionallight.cpp">
       <Filter>Source Files\graphics</Filter>
     </ClCompile>
+    <ClCompile Include="src\graphics\entityrenderer.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\model.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\debugging\debug.h">
@@ -144,6 +150,12 @@
       <Filter>Header Files\util</Filter>
     </ClInclude>
     <ClInclude Include="include\graphics\directionallight.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\entityrenderer.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\model.h">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
   </ItemGroup>

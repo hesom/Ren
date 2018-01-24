@@ -36,6 +36,11 @@ namespace ren
         m_position = position;
     }
 
+    auto Camera::getPosition() const -> const decltype(m_position)&
+    {
+        return m_position;
+    }
+
     auto Camera::setRotation(float pitch, float yaw) -> void
     {
         m_yaw = yaw;

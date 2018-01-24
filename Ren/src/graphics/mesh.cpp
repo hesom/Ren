@@ -1,11 +1,14 @@
 #include "graphics/mesh.h"
 
+#include "graphics/shadermanager.h"
+
 namespace ren
 {
-    Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices)
+    Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures)
     {
         this->m_vertices = vertices;
         this->m_indices = indices;
+        this->m_textures = textures;
     }
 
     Mesh::~Mesh()
@@ -39,6 +42,8 @@ namespace ren
         glEnableVertexAttribArray(1);
         glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, uv));
         glEnableVertexAttribArray(2);
+        glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, tangent));
+        glEnableVertexAttribArray(3);
 
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebo);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_indices.size() * sizeof(unsigned int), m_indices.data(), GL_STATIC_DRAW);
@@ -53,8 +58,35 @@ namespace ren
         glDeleteBuffers(1, &m_ebo);
     }
 
-    auto Mesh::draw() -> void
+    auto Mesh::render(std::string shader) -> void
     {
+        bool hasNormalTex = false;
+        bool hasSpecularTex = false;
+        for (auto tex : m_textures) {
+            if (tex.getType() == "texture_diffuse") {
+                tex.bind(0);
+            }
+            if (tex.getType() == "texture_normal") {
+                tex.bind(1);
+                hasNormalTex = true;
+            }
+            if (tex.getType() == "texture_specular") {
+                tex.bind(2);
+                hasSpecularTex = true;
+            }
+        }
+        if (hasNormalTex) {
+            ShaderManager::get(shader)->setUniformValue("hasNormalTex", 1.0);
+        }
+        else {
+            ShaderManager::get(shader)->setUniformValue("hasNormalTex", 0.0);
+        }
+        if (hasSpecularTex) {
+            ShaderManager::get(shader)->setUniformValue("hasSpecularTex", 1.0);
+        }
+        else {
+            ShaderManager::get(shader)->setUniformValue("hasSpecularTex", 0.0);
+        }
         glBindVertexArray(m_vao);
         glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, (void*)0);
     }

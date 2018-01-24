@@ -26,6 +26,9 @@ public:
     auto destroy() -> void;
 
     auto setUniformMatrix(const std::string& location, const glm::mat4& matrix) -> void;
+    auto setUniformValue(const std::string& location, const glm::vec3& vector) -> void;
+    auto setUniformValue(const std::string& location, float val) -> void;
+    auto setUniformValueArray(const std::string& location, const glm::vec3* arr, size_t length) -> void;
 
     auto link() -> bool;
     auto bind() -> void;

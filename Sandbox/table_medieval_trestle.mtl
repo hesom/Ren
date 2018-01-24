@@ -1,0 +1,28 @@
+# Blender MTL File: 'table_medieval_trestle.blend'
+# Material Count: 2
+
+newmtl table_med_tres_rough
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.219059 0.219059 0.219059
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd table_med_trestle_dif.png
+map_Ks table_med_trestle_spec.png
+map_Bump table_med_trestle_nor.png
+
+newmtl table_med_tres_rough.001
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.219059 0.219059 0.219059
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd table_med_trestle_dif.png
+map_Ks table_med_trestle_spec.png
+map_Bump table_med_trestle_nor.png

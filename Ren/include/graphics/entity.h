@@ -4,25 +4,23 @@
 #include "graphics/mesh.h"
 #include "graphics/texture.h"
 #include "glm/glm.hpp"
+#include <iostream>
+#include "graphics/model.h"
 
 namespace ren
 {
     class Entity
     {
     private:
-        std::shared_ptr<Mesh> m_mesh;
+        std::shared_ptr<Model> m_model;
         glm::mat4 m_transformation;
-        std::shared_ptr<Texture> m_diffuseTex;
-        std::shared_ptr<Texture> m_normalTex;
-        std::shared_ptr<Texture> m_specularTex;
+        std::string m_shader;
 
     public:
-        Entity(
-            std::shared_ptr<Mesh> mesh,
-            std::shared_ptr<Texture> diffuseTex,
-            std::shared_ptr<Texture> normalTex,
-            std::shared_ptr<Texture> specularTex);
+        Entity(std::string path);
+        auto setShader(std::string shader) -> void;
         auto setTransformation(glm::mat4 transformation) -> void;
+        auto getTransformation() -> const decltype(m_transformation)&;
         auto render() -> void;
     };
 }

@@ -1,11 +1,27 @@
 #include "graphics/texture.h"
 
 #include "glad/glad.h"
+#include "util/stb_image.h"
+
 namespace ren
 {
-    Texture::~Texture()
+
+    auto Texture::fromFile(std::string path) -> void
     {
-        glDeleteTextures(1, &m_textureID);
+        int width, height, channels;
+        unsigned char* data = stbi_load(path.c_str(), &width, &height, &channels, 0);
+        GLenum format;
+        if (channels == 1) {
+            format = GL_R8;
+        }
+        else if (channels == 3) {
+            format = GL_RGB8;
+        }
+        else if (channels == 4) {
+            format = GL_RGBA8;
+        }
+        this->allocate(width, height, GL_TRUE, format);
+        this->buffer(data, channels);
     }
 
     auto Texture::allocate(GLuint width, GLuint height, GLboolean mipmaps, GLenum internalFormat) -> void
@@ -26,10 +42,23 @@ namespace ren
         glTexStorage2D(GL_TEXTURE_2D, levels, internalFormat, m_width, m_height);
     }
 
-    auto Texture::buffer(const unsigned char* data) -> void
+    auto Texture::buffer(const unsigned char* data, int channels) -> void
     {
+        GLenum format;
+        switch (channels) {
+        case 1:
+            format = GL_RED;
+            break;
+        case 3:
+            format = GL_RGB;
+            break;
+        default:
+            format = GL_RGBA;
+            break;
+        }
+
         glBindTexture(GL_TEXTURE_2D, m_textureID);
-        glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_width, m_height, GL_RGB, GL_UNSIGNED_BYTE, data);
+        glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_width, m_height, format, GL_UNSIGNED_BYTE, data);
         glGenerateMipmap(GL_TEXTURE_2D);
     }
 
@@ -47,5 +76,13 @@ namespace ren
     auto Texture::unbind() -> void
     {
         glBindTexture(GL_TEXTURE_2D, 0);
+    }
+    auto Texture::setType(std::string type) -> void
+    {
+        m_type = type;
+    }
+    auto Texture::getType() const -> const decltype(m_type)&
+    {
+        return m_type;
     }
 }

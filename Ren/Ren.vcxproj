@@ -75,11 +75,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)\include;$(ProjectDir)\libs\glad;$(ProjectDir)\libs\glfw-3.2.1\include;$(ProjectDir)\libs\KHR;$(ProjectDir)\libs\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\include;$(ProjectDir)\libs\glad;$(ProjectDir)\libs\glfw-3.2.1\include;$(ProjectDir)\libs\KHR;$(ProjectDir)\libs\glm;$(ProjectDir)\libs\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Lib>
-      <AdditionalDependencies>glfw-3.2.1\lib\glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw-3.2.1\lib\glfw3.lib;assimp\lib\assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
       <AdditionalLibraryDirectories>$(ProjectDir)\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -90,11 +90,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)\include;$(ProjectDir)\libs\glad;$(ProjectDir)\libs\glfw-3.2.1\include;$(ProjectDir)\libs\KHR;$(ProjectDir)\libs\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\include;$(ProjectDir)\libs\glad;$(ProjectDir)\libs\glfw-3.2.1\include;$(ProjectDir)\libs\KHR;$(ProjectDir)\libs\glm;$(ProjectDir)\libs\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Lib>
-      <AdditionalDependencies>glfw-3.2.1\lib\glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw-3.2.1\lib\glfw3.lib;assimp\lib\assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
       <AdditionalLibraryDirectories>$(ProjectDir)\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -107,7 +107,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)\include;$(ProjectDir)\libs\glad;$(ProjectDir)\libs\glfw-3.2.1\include;$(ProjectDir)\libs\KHR;$(ProjectDir)\libs\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\include;$(ProjectDir)\libs\glad;$(ProjectDir)\libs\glfw-3.2.1\include;$(ProjectDir)\libs\KHR;$(ProjectDir)\libs\glm;$(ProjectDir)\libs\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -115,7 +115,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>glfw-3.2.1\lib\glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw-3.2.1\lib\glfw3.lib;assimp\lib\assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
       <AdditionalLibraryDirectories>$(ProjectDir)\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -128,7 +128,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)\include;$(ProjectDir)\libs\glad;$(ProjectDir)\libs\glfw-3.2.1\include;$(ProjectDir)\libs\KHR;$(ProjectDir)\libs\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\include;$(ProjectDir)\libs\glad;$(ProjectDir)\libs\glfw-3.2.1\include;$(ProjectDir)\libs\KHR;$(ProjectDir)\libs\glm;$(ProjectDir)\libs\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -136,7 +136,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>glfw-3.2.1\lib\glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw-3.2.1\lib\glfw3.lib;assimp\lib\assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
       <AdditionalLibraryDirectories>$(ProjectDir)\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -149,8 +149,10 @@
     <ClCompile Include="src\graphics\directionallight.cpp" />
     <ClCompile Include="src\graphics\entity.cpp" />
     <ClCompile Include="src\graphics\entitymanager.cpp" />
+    <ClCompile Include="src\graphics\entityrenderer.cpp" />
     <ClCompile Include="src\graphics\fpscamera.cpp" />
     <ClCompile Include="src\graphics\mesh.cpp" />
+    <ClCompile Include="src\graphics\model.cpp" />
     <ClCompile Include="src\graphics\projection.cpp" />
     <ClCompile Include="src\graphics\shadermanager.cpp" />
     <ClCompile Include="src\graphics\shaderprogram.cpp" />
@@ -165,8 +167,10 @@
     <ClInclude Include="include\graphics\directionallight.h" />
     <ClInclude Include="include\graphics\entity.h" />
     <ClInclude Include="include\graphics\entitymanager.h" />
+    <ClInclude Include="include\graphics\entityrenderer.h" />
     <ClInclude Include="include\graphics\fpscamera.h" />
     <ClInclude Include="include\graphics\mesh.h" />
+    <ClInclude Include="include\graphics\model.h" />
     <ClInclude Include="include\graphics\projection.h" />
     <ClInclude Include="include\graphics\shadermanager.h" />
     <ClInclude Include="include\graphics\shaderprogram.h" />

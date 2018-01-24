@@ -16,7 +16,9 @@ int main()
 
     std::shared_ptr<FPSCamera> camera = std::make_shared<FPSCamera>();
     engine.setMainCamera(camera);
-    auto well = EntityManager::loadFromOBJ("well.obj");
+    auto well = EntityManager::loadFromFile("table_medieval_trestle.obj");
+    EntityManager::addDirectionalLight(glm::vec3(0.0f, -10000.0f, 0.0f), glm::vec3(1.0f));
+    EntityManager::addDirectionalLight(glm::vec3(0.0f, 10.0f, 0.0f), glm::vec3(0.3f));
 	//InputManager::detachKeyListener(&listener);
     
 	engine.start();

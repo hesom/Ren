@@ -100,6 +100,24 @@ auto ShaderProgram::setUniformMatrix(const std::string& location, const glm::mat
     glUniformMatrix4fv(loc, 1, GL_FALSE, glm::value_ptr(matrix));
 }
 
+auto ShaderProgram::setUniformValue(const std::string & location, const glm::vec3& vector) -> void
+{
+    GLuint loc = glGetUniformLocation(m_programId, location.c_str());
+    glUniform3fv(loc, 1, glm::value_ptr(vector));
+}
+
+auto ShaderProgram::setUniformValue(const std::string & location, float val) -> void
+{
+    GLuint loc = glGetUniformLocation(m_programId, location.c_str());
+    glUniform1f(loc, val);
+}
+
+auto ShaderProgram::setUniformValueArray(const std::string & location, const glm::vec3* arr, size_t length) -> void
+{
+    GLuint loc = glGetUniformLocation(m_programId, location.c_str());
+    glUniform3fv(loc, length, glm::value_ptr(arr[0]));
+}
+
 auto ShaderProgram::link() -> bool
 {
     glLinkProgram(m_programId);
