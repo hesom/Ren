@@ -157,6 +157,8 @@
     <ClCompile Include="src\graphics\shadermanager.cpp" />
     <ClCompile Include="src\graphics\shaderprogram.cpp" />
     <ClCompile Include="src\graphics\texture.cpp" />
+    <ClCompile Include="src\graphics\waterrenderer.cpp" />
+    <ClCompile Include="src\graphics\watertile.cpp" />
     <ClCompile Include="src\ui\inputmanager.cpp" />
     <ClCompile Include="src\ui\windowmanager.cpp" />
     <ClCompile Include="src\util\stb_image.cpp" />
@@ -175,6 +177,8 @@
     <ClInclude Include="include\graphics\shadermanager.h" />
     <ClInclude Include="include\graphics\shaderprogram.h" />
     <ClInclude Include="include\graphics\texture.h" />
+    <ClInclude Include="include\graphics\waterrenderer.h" />
+    <ClInclude Include="include\graphics\watertile.h" />
     <ClInclude Include="include\rengine.h" />
     <ClInclude Include="include\ui\inputmanager.h" />
     <ClInclude Include="include\ui\keylistener.h" />
@@ -186,8 +190,10 @@
     <ClInclude Include="src\debugging\debug.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="include\graphics\shaders\shader.frag" />
-    <None Include="include\graphics\shaders\shader.vert" />
+    <None Include="include\graphics\shaders\entityshader.frag" />
+    <None Include="include\graphics\shaders\entityshader.vert" />
+    <None Include="include\graphics\shaders\watershader.frag" />
+    <None Include="include\graphics\shaders\watershader.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

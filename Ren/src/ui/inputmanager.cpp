@@ -44,7 +44,7 @@ namespace ren
 
 	auto InputManager::handleCursorEvent(const double xpos, const double ypos) -> void
 	{
-		//calculates dinstance since last cursor movement in pixels
+		//calculates distance since last cursor movement in pixels
         static bool firstMouse = true;
         if (firstMouse) {
             m_mouseX_old = xpos;

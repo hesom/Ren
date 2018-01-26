@@ -6,11 +6,6 @@ namespace ren
     {
         m_model = std::make_shared<Model>(path.c_str());
         m_transformation = glm::mat4(1.0f);
-        m_shader = "BasicShader";
-    }
-
-    auto Entity::setShader(std::string shader) -> void
-    {
     }
 
     auto Entity::setTransformation(glm::mat4 transformation) -> void
@@ -23,9 +18,9 @@ namespace ren
         return m_transformation;
     }
 
-    auto Entity::render() -> void
+    auto Entity::render(std::string shader) -> void
     {   
-        m_model->render(m_shader);
+        m_model->render(shader);
     }
 }
 
