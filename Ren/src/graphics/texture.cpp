@@ -22,6 +22,7 @@ namespace ren
         }
         this->allocate(width, height, GL_TRUE, format);
         this->buffer(data, channels);
+        stbi_image_free(data);
     }
 
     auto Texture::allocate(GLuint width, GLuint height, GLboolean mipmaps, GLenum internalFormat) -> void

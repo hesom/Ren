@@ -6,6 +6,7 @@
 #include "glad/glad.h"
 #include "graphics/camera.h"
 #include "graphics/waterframebuffers.h"
+#include "graphics/texture.h"
 
 namespace ren
 {
@@ -15,6 +16,10 @@ namespace ren
         static std::vector<std::shared_ptr<WaterTile>> m_tiles;
         static GLuint m_vao;
         static GLuint m_vbo;
+        static std::shared_ptr<Texture> dudvMap;
+        static std::shared_ptr<Texture> normalMap;
+        static float m_wave_speed;
+        static float m_animation_timer;
 
         static auto setUp() -> void;
     public:
