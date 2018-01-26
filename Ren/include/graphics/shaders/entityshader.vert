@@ -25,9 +25,16 @@ uniform mat4 normalMatrix;
 uniform vec3 cameraPos;
 uniform vec3 lightPos[MAX_LIGHTS];
 
+uniform vec4 plane;
+
 void main()
 {
+    
+    vec4 worldPos = modelMatrix * vec4(position, 1.0);
+
     vec3 pos = (viewMatrix * modelMatrix * vec4(position, 1.0)).xyz;
+
+    gl_ClipDistance[0] = dot(worldPos, plane);
 
     vec3 eye_pos = vec3(0.0);
     vnormal = mat3(normalMatrix)*normal;

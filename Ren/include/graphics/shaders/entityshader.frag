@@ -51,6 +51,7 @@ void main()
 
     vec3 totalDiffuse = vec3(0.0);
     vec3 totalSpecular = vec3(0.0);
+    vec3 totalAmbient = vec3(0.0);
 
     for(int i = 0; i < MAX_LIGHTS; i++){
         vec3 light = normalize(vlight[i]);
@@ -58,12 +59,14 @@ void main()
         vec3 halfway = normalize(light + view);
         vec3 diffuse = surface_color * lightColor[i] * max(dot(light, normal), 0.0);
         vec3 specular = ks * lightColor[i] * pow(max(dot(halfway, normal), 0.0), shininess);
+        vec3 ambient = ka*lightColor[i];
 
         totalDiffuse+=diffuse;
         totalSpecular+=specular;
+        totalAmbient += ambient;
     }
 
-    fcolor = vec4(surface_color * (totalDiffuse + totalSpecular), 1.0);
+    fcolor = vec4(surface_color * (totalDiffuse + totalSpecular + totalAmbient), 1.0);
 }
 
 

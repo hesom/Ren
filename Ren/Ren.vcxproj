@@ -157,6 +157,7 @@
     <ClCompile Include="src\graphics\shadermanager.cpp" />
     <ClCompile Include="src\graphics\shaderprogram.cpp" />
     <ClCompile Include="src\graphics\texture.cpp" />
+    <ClCompile Include="src\graphics\waterframebuffers.cpp" />
     <ClCompile Include="src\graphics\waterrenderer.cpp" />
     <ClCompile Include="src\graphics\watertile.cpp" />
     <ClCompile Include="src\ui\inputmanager.cpp" />
@@ -177,6 +178,7 @@
     <ClInclude Include="include\graphics\shadermanager.h" />
     <ClInclude Include="include\graphics\shaderprogram.h" />
     <ClInclude Include="include\graphics\texture.h" />
+    <ClInclude Include="include\graphics\waterframebuffers.h" />
     <ClInclude Include="include\graphics\waterrenderer.h" />
     <ClInclude Include="include\graphics\watertile.h" />
     <ClInclude Include="include\rengine.h" />

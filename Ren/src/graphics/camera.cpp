@@ -52,6 +52,11 @@ namespace ren
         ));
     }
 
+    auto Camera::invertPitch() -> void
+    {
+        m_pitch = -m_pitch;
+    }
+
     auto Camera::getViewMatrix() -> glm::mat4
     {
         m_viewDirection = glm::normalize(glm::vec3(

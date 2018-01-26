@@ -62,6 +62,11 @@ namespace ren
     {
         bool hasNormalTex = false;
         bool hasSpecularTex = false;
+
+        ShaderManager::get(shader)->setUniformValue("diffuseMap", 0);
+        ShaderManager::get(shader)->setUniformValue("normalMap", 1);
+        ShaderManager::get(shader)->setUniformValue("specularMap", 2);
+
         for (auto tex : m_textures) {
             if (tex.getType() == "texture_diffuse") {
                 tex.bind(0);
@@ -76,16 +81,16 @@ namespace ren
             }
         }
         if (hasNormalTex) {
-            ShaderManager::get(shader)->setUniformValue("hasNormalTex", 1.0);
+            ShaderManager::get(shader)->setUniformValue("hasNormalTex", 1.0f);
         }
         else {
-            ShaderManager::get(shader)->setUniformValue("hasNormalTex", 0.0);
+            ShaderManager::get(shader)->setUniformValue("hasNormalTex", 0.0f);
         }
         if (hasSpecularTex) {
-            ShaderManager::get(shader)->setUniformValue("hasSpecularTex", 1.0);
+            ShaderManager::get(shader)->setUniformValue("hasSpecularTex", 1.0f);
         }
         else {
-            ShaderManager::get(shader)->setUniformValue("hasSpecularTex", 0.0);
+            ShaderManager::get(shader)->setUniformValue("hasSpecularTex", 0.0f);
         }
         glBindVertexArray(m_vao);
         glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, (void*)0);

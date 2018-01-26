@@ -99,6 +99,9 @@
     <ClCompile Include="src\graphics\waterrenderer.cpp">
       <Filter>Source Files\graphics</Filter>
     </ClCompile>
+    <ClCompile Include="src\graphics\waterframebuffers.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\debugging\debug.h">
@@ -164,10 +167,13 @@
     <ClInclude Include="include\graphics\model.h">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="include\graphics\watertile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\graphics\waterrenderer.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\waterframebuffers.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\watertile.h">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
   </ItemGroup>

@@ -8,6 +8,8 @@ namespace ren
 {
 
 	GLFWwindow* WindowManager::window;
+    int WindowManager::m_width = 0;
+    int WindowManager::m_height = 0;
 
 	auto WindowManager::init() -> bool
 	{
@@ -16,9 +18,13 @@ namespace ren
 
 	auto WindowManager::createWindow(const int width, const int height, const std::string title) -> void
 	{
+        m_width = width;
+        m_height = height;
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+        glfwWindowHint(GLFW_SAMPLES, 4);
+        glfwWindowHint(GLFW_DEPTH_BITS, 24);
 
 #ifdef _DEBUG
         glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
@@ -90,6 +96,16 @@ namespace ren
 		glfwSwapBuffers(window);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
+
+    auto WindowManager::getHeight() -> decltype(m_height)
+    {
+        return m_height;
+    }
+
+    auto WindowManager::getWidth() -> decltype(m_width)
+    {
+        return m_width;
+    }
 
 #ifdef _DEBUG
     auto WindowManager::debugSetup() -> void

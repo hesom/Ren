@@ -29,15 +29,27 @@ namespace ren
         glEnableVertexAttribArray(0);
     }
 
-    auto WaterRenderer::render(std::shared_ptr<Camera> camera) -> void
+    auto WaterRenderer::render(std::shared_ptr<Camera> camera, std::shared_ptr<WaterFramebuffers> fbos) -> void
     {
         static bool firstInvoc = true;
         if (firstInvoc) {
             setUp();
         }
-
         glEnable(GL_DEPTH_TEST);
+        glEnable(GL_CULL_FACE);
         ShaderManager::get("WaterShader")->bind();
+
+        GLuint reflectTex = fbos->getReflectionTexture();
+        GLuint refractTex = fbos->getRefractionTexture();
+
+        ShaderManager::get("WaterShader")->setUniformValue("reflectionTexture", 0);
+        ShaderManager::get("WaterShader")->setUniformValue("refractionTexture", 1);
+
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, fbos->getReflectionTexture());
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, fbos->getRefractionTexture());
+
         auto viewMatrix = camera->getViewMatrix();
         ShaderManager::get("WaterShader")->setUniformMatrix("viewMatrix", viewMatrix);
         for (auto tile : m_tiles) {
@@ -49,11 +61,21 @@ namespace ren
             glDrawArrays(GL_TRIANGLES, 0, 6);
         }
 
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, 0);
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, 0);
+
+        glDisable(GL_CULL_FACE);
         glDisable(GL_DEPTH_TEST);
     }
 
     auto WaterRenderer::addTile(std::shared_ptr<WaterTile> tile) -> void
     {
         m_tiles.push_back(tile);
+    }
+    auto WaterRenderer::getTiles() -> const decltype(m_tiles)&
+    {
+        return m_tiles;
     }
 }

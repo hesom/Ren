@@ -17,6 +17,7 @@ namespace ren
 
         glEnable(GL_DEPTH_TEST);
         glEnable(GL_CULL_FACE);
+        glEnable(GL_CLIP_DISTANCE0);
 
         for (int i = 0; i < MAX_LIGHTS; i++) {
             if (i < directionalLights.size()) {
@@ -39,6 +40,7 @@ namespace ren
             entity->render("EntityShader");
         }
 
+        glDisable(GL_CLIP_DISTANCE0);
         glDisable(GL_CULL_FACE);
         glDisable(GL_DEPTH_TEST);
     }

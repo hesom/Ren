@@ -13,6 +13,8 @@ namespace ren {
 	{
 	private:
 		static GLFWwindow* window;
+        static int m_width;
+        static int m_height;
 #ifdef _DEBUG
         static auto debugSetup() -> void;
 #endif
@@ -27,6 +29,8 @@ namespace ren {
 		static auto destroyWindow() -> void;
 		static auto exitRequested() -> bool;
 		static auto updateWindow() -> void;
+        static auto getHeight() -> decltype(m_height);
+        static auto getWidth() -> decltype(m_width);
 
 		WindowManager(WindowManager const&) = delete;
 		void operator=(WindowManager const&) = delete;
