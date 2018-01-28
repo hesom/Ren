@@ -39,6 +39,7 @@ void main()
     reflectTexcoords += totalDistortion;
     reflectTexcoords.x = clamp(reflectTexcoords.x, 0.001, 0.999);
     reflectTexcoords.y = clamp(reflectTexcoords.y, -0.999, -0.001);
+    
 
     vec4 reflectColor = texture(reflectionTexture, reflectTexcoords);
     vec4 refractColor = texture(refractionTexture, refractTexcoords);
@@ -55,7 +56,7 @@ void main()
     }
 
     fcolor = mix(reflectColor, refractColor, fresnelFactor);
-    fcolor = mix(fcolor, vec4(0.0, 0.3, 0.5, 1.0), 0.2);
+    fcolor = mix(fcolor, vec4(0.0, 1.0, 1.0, 1.0), 0.5);
     fcolor += vec4(totalSpecular, 0.0);
 }
 
