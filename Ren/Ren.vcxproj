@@ -143,7 +143,6 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="C:\Users\hsomm\Desktop\Ren-master\Ren\src\rengine.cpp" />
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\graphics\camera.cpp" />
     <ClCompile Include="src\graphics\directionallight.cpp" />
@@ -160,6 +159,7 @@
     <ClCompile Include="src\graphics\waterframebuffers.cpp" />
     <ClCompile Include="src\graphics\waterrenderer.cpp" />
     <ClCompile Include="src\graphics\watertile.cpp" />
+    <ClCompile Include="src\rengine.cpp" />
     <ClCompile Include="src\ui\inputmanager.cpp" />
     <ClCompile Include="src\ui\windowmanager.cpp" />
     <ClCompile Include="src\util\stb_image.cpp" />

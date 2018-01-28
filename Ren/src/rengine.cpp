@@ -1,61 +1,106 @@
 #include <iostream>
+#include <string>
 #include <GLFW/glfw3.h>
+#include "glad/glad.h"
 
 #include "rengine.h"
 #include "ui/windowmanager.h"
 #include "graphics/mesh.h"
 #include "glm/glm.hpp"
+#include "graphics/shaderprogram.h"
+#include "graphics/shadermanager.h"
+#include "graphics/entitymanager.h"
+#include "graphics/entityrenderer.h"
+#include "graphics/waterrenderer.h"
+#include "graphics/waterframebuffers.h"
+#include "util/timer.h"
 
 namespace ren
 {
     Rengine::Rengine()
     {
         createWindow();
+        m_projection = Projection(90.0f, 0.1f, 100.0f, 1280, 720);
     }
 
-    void Rengine::start()
+    auto Rengine::setMainCamera(std::shared_ptr<Camera> camera) -> void
     {
-        float vertices[] = {
-            0.5f,  0.5f, 0.0f,  // top right
-            0.5f, -0.5f, 0.0f,  // bottom right
-            -0.5f, -0.5f, 0.0f,  // bottom left
-            -0.5f,  0.5f, 0.0f   // top left 
-        };
-        unsigned int indices[] = {  // note that we start from 0!
-            0, 1, 3,  // first Triangle
-            1, 2, 3   // second Triangle
-        };
+        m_mainCamera = camera;
+    }
 
-        std::vector<Vertex> vertexData;
-
-        for (int i = 0; i < 4; i += 3) {
-            Vertex v;
-            v.position = glm::vec3(vertices[i], vertices[i + 1], vertices[i + 2]);
-            v.normal = glm::vec3(0.0f, 0.0f, 1.0f);
-            v.uv = glm::vec3(0.0f);
-            vertexData.push_back(v);
-        }
-        std::vector<unsigned int> indexData;
-
-        Mesh mesh(vertexData, indexData);
-        mesh.setupBuffer();
-
-        for (int i = 0; i < 6; i++) {
-            indexData.push_back(indices[i]);
-        }
+    auto Rengine::start() -> void
+    {
+        loadShaders();
+        glm::mat4 projectionMatrix = m_projection.getProjectionMatrix();
+        auto waterFBOs = std::make_shared<WaterFramebuffers>();
 
         while (!WindowManager::exitRequested()) {
+            Timer::tick();
+            m_mainCamera->update();
 
-            mesh.draw();
+            ShaderManager::get("EntityShader")->setUniformMatrix("projectionMatrix", projectionMatrix);
+            ShaderManager::get("WaterShader")->setUniformMatrix("projectionMatrix", projectionMatrix);
+
+            if (WaterRenderer::getTiles().size() != 0) {
+                auto waterTile = WaterRenderer::getTiles().at(0);
+                float cameraDistance = 2 * (m_mainCamera->getPosition().y - waterTile->getHeight());
+                auto waterCamera = std::make_shared<Camera>(*m_mainCamera);
+                waterCamera->setPosition(glm::vec3(
+                    waterCamera->getPosition().x,
+                    waterCamera->getPosition().y - cameraDistance,
+                    waterCamera->getPosition().z));
+                waterCamera->invertPitch();
+
+                //Water reflection pass
+                ShaderManager::get("EntityShader")->setUniformValue("plane", glm::vec4(0.0f, 1.0f, 0.0f, -waterTile->getHeight()));
+                waterFBOs->bindReflectionFramebuffer();
+                glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+                EntityRenderer::render(waterCamera);
+                waterFBOs->unbindCurrentFramebuffer();
+                //Water refraction pass
+                ShaderManager::get("EntityShader")->setUniformValue("plane", glm::vec4(0.0f, -1.0f, 0.0f, waterTile->getHeight()));
+                waterFBOs->bindRefractionFramebuffer();
+                glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+                EntityRenderer::render(m_mainCamera);
+                waterFBOs->unbindCurrentFramebuffer();
+            }
+
+            //Main pass
+            ShaderManager::get("EntityShader")->setUniformValue("plane", glm::vec4(0.0f, -1.0f, 0.0f, 100000.0f));
+            EntityRenderer::render(m_mainCamera);
+
+            WaterRenderer::render(m_mainCamera, waterFBOs);
+
             WindowManager::updateWindow();
         }
 
+        waterFBOs->cleanUp();
         WindowManager::destroyWindow();
     }
 
-    void Rengine::createWindow()
+    auto Rengine::createWindow() -> void
     {
         WindowManager::init();
-        WindowManager::createWindow(800, 600, "My Window");
+        WindowManager::createWindow(1280, 720, "My Window");
+    }
+    auto Rengine::loadShaders() -> void
+    {
+        std::string vertexSource =
+#include "graphics/shaders/entityshader.vert"
+            ;
+        std::string fragmentSource =
+#include "graphics/shaders/entityshader.frag"
+            ;
+
+        ShaderManager::add(vertexSource, fragmentSource, "EntityShader");
+
+        vertexSource =
+#include "graphics/shaders/watershader.vert"
+            ;
+        fragmentSource =
+#include "graphics/shaders/watershader.frag"
+            ;
+
+        ShaderManager::add(vertexSource, fragmentSource, "WaterShader");
     }
 }
