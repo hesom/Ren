@@ -2,7 +2,6 @@
 #include <memory>
 #include <rengine.h>
 
-#include "Listener.h"
 #include "ui/inputmanager.h"
 #include "graphics/fpscamera.h"
 #include "graphics/entitymanager.h"
@@ -13,7 +12,6 @@ int main()
 {
 	using namespace ren;
 	Rengine engine;
-	//Listener listener;
 
     std::shared_ptr<FPSCamera> camera = std::make_shared<FPSCamera>();
     engine.setMainCamera(camera);
@@ -30,7 +28,6 @@ int main()
 
     EntityManager::addDirectionalLight(glm::vec3(0.0f, 10000.0f, 3000.0f), glm::vec3(3.0f));
     WaterRenderer::addTile(std::make_shared<WaterTile>(0.0f, 0.0f, 0.0f));
-	//InputManager::detachKeyListener(&listener);
     
 	engine.start();
 }

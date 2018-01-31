@@ -127,11 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Listener.cpp" />
     <ClCompile Include="src\main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\Listener.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ren\Ren.vcxproj">
