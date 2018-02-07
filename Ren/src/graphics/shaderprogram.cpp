@@ -97,42 +97,60 @@ auto ShaderProgram::destroy() -> void
 auto ShaderProgram::setUniformMatrix(const std::string& location, const glm::mat4& matrix) -> void
 {
     this->bind();
-    GLuint loc = glGetUniformLocation(m_programId, location.c_str());
+    GLint loc = glGetUniformLocation(m_programId, location.c_str());
+    if (loc == -1) {
+        std::cout << "Warning: no uniform location with name " << location << std::endl;
+    }
     glUniformMatrix4fv(loc, 1, GL_FALSE, glm::value_ptr(matrix));
 }
 
 auto ShaderProgram::setUniformValue(const std::string & location, const glm::vec3& vector) -> void
 {
     this->bind();
-    GLuint loc = glGetUniformLocation(m_programId, location.c_str());
+    GLint loc = glGetUniformLocation(m_programId, location.c_str());
+    if (loc == -1) {
+        std::cout << "Warning: no uniform location with name " << location << std::endl;
+    }
     glUniform3fv(loc, 1, glm::value_ptr(vector));
 }
 
 auto ShaderProgram::setUniformValue(const std::string & location, const glm::vec4 & vector) -> void
 {
     this->bind();
-    GLuint loc = glGetUniformLocation(m_programId, location.c_str());
+    GLint loc = glGetUniformLocation(m_programId, location.c_str());
+    if (loc == -1) {
+        std::cout << "Warning: no uniform location with name " << location << std::endl;
+    }
     glUniform4fv(loc, 1, glm::value_ptr(vector));
 }
 
 auto ShaderProgram::setUniformValue(const std::string & location, float val) -> void
 {
     this->bind();
-    GLuint loc = glGetUniformLocation(m_programId, location.c_str());
+    GLint loc = glGetUniformLocation(m_programId, location.c_str());
+    if (loc == -1) {
+        std::cout << "Warning: no uniform location with name " << location << std::endl;
+    }
     glUniform1f(loc, val);
 }
 
 auto ShaderProgram::setUniformValue(const std::string & location, int val) -> void
 {
     this->bind();
-    GLuint loc = glGetUniformLocation(m_programId, location.c_str());
+    GLint loc = glGetUniformLocation(m_programId, location.c_str());
+    if (loc == -1) {
+        std::cout << "Warning: no uniform location with name " << location << std::endl;
+    }
     glUniform1i(loc, val);
 }
 
 auto ShaderProgram::setUniformValueArray(const std::string & location, const glm::vec3* arr, size_t length) -> void
 {
     this->bind();
-    GLuint loc = glGetUniformLocation(m_programId, location.c_str());
+    GLint loc = glGetUniformLocation(m_programId, location.c_str());
+    if (loc == -1) {
+        std::cout << "Warning: no uniform location with name " << location << std::endl;
+    }
     glUniform3fv(loc, length, glm::value_ptr(arr[0]));
 }
 
