@@ -36,7 +36,6 @@ namespace ren
             ShaderManager::get("EntityShader")->setUniformMatrix("modelMatrix", modelMatrix);
             ShaderManager::get("EntityShader")->setUniformMatrix("normalMatrix", normalMatrix);
             ShaderManager::get("EntityShader")->setUniformMatrix("viewMatrix", viewMatrix);
-            ShaderManager::get("EntityShader")->setUniformValue("cameraPos", camera->getPosition());
             entity->render("EntityShader");
         }
 

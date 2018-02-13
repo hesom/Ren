@@ -20,7 +20,6 @@ uniform float hasNormalTex;
 uniform float hasSpecularTex;
 
 uniform vec3 lightColor[MAX_LIGHTS];
-uniform vec3 cameraPos;
 
 void main()
 {   

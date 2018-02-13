@@ -1,11 +1,6 @@
 #include <iostream>
 #include <memory>
 #include <rengine.h>
-
-#include "ui/inputmanager.h"
-#include "graphics/fpscamera.h"
-#include "graphics/entitymanager.h"
-#include "graphics/waterrenderer.h"
 #include "glm/gtc/matrix_transform.hpp"
 
 int main()

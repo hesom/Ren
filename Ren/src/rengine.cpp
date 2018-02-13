@@ -14,13 +14,15 @@
 #include "graphics/waterrenderer.h"
 #include "graphics/waterframebuffers.h"
 #include "util/timer.h"
+#include "graphics/camera.h"
+#include "graphics/projection.h"
 
 namespace ren
 {
     Rengine::Rengine()
     {
         createWindow();
-        m_projection = Projection(90.0f, 0.1f, 100.0f, 1280, 720);
+        m_projection = std::make_shared<Projection>(90.0f, 0.1f, 100.0f, 1280, 720);
     }
 
     auto Rengine::setMainCamera(std::shared_ptr<Camera> camera) -> void
@@ -31,7 +33,7 @@ namespace ren
     auto Rengine::start() -> void
     {
         loadShaders();
-        glm::mat4 projectionMatrix = m_projection.getProjectionMatrix();
+        glm::mat4 projectionMatrix = m_projection->getProjectionMatrix();
         auto waterFBOs = std::make_shared<WaterFramebuffers>();
 
         while (!WindowManager::exitRequested()) {
