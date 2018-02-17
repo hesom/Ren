@@ -1,5 +1,4 @@
 #include "graphics/entity.h"
-#include "graphics/shadermanager.h"
 namespace ren
 {
     Entity::Entity(std::string path)
@@ -18,7 +17,7 @@ namespace ren
         return m_transformation;
     }
 
-    auto Entity::render(std::string shader) -> void
+    auto Entity::render(std::shared_ptr<ShaderProgram> shader) -> void
     {   
         m_model->render(shader);
     }

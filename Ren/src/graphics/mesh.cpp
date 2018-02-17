@@ -1,7 +1,5 @@
 #include "graphics/mesh.h"
 
-#include "graphics/shadermanager.h"
-
 namespace ren
 {
     Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures)
@@ -58,14 +56,14 @@ namespace ren
         glDeleteBuffers(1, &m_ebo);
     }
 
-    auto Mesh::render(std::string shader) -> void
+    auto Mesh::render(std::shared_ptr<ShaderProgram> shader) -> void
     {
         bool hasNormalTex = false;
         bool hasSpecularTex = false;
 
-        ShaderManager::get(shader)->setUniformValue("diffuseMap", 0);
-        ShaderManager::get(shader)->setUniformValue("normalMap", 1);
-        ShaderManager::get(shader)->setUniformValue("specularMap", 2);
+        shader->setUniformValue("diffuseMap", 0);
+        shader->setUniformValue("normalMap", 1);
+        shader->setUniformValue("specularMap", 2);
 
         for (auto tex : m_textures) {
             if (tex.getType() == "texture_diffuse") {
@@ -81,16 +79,16 @@ namespace ren
             }
         }
         if (hasNormalTex) {
-            ShaderManager::get(shader)->setUniformValue("hasNormalTex", 1.0f);
+            shader->setUniformValue("hasNormalTex", 1.0f);
         }
         else {
-            ShaderManager::get(shader)->setUniformValue("hasNormalTex", 0.0f);
+            shader->setUniformValue("hasNormalTex", 0.0f);
         }
         if (hasSpecularTex) {
-            ShaderManager::get(shader)->setUniformValue("hasSpecularTex", 1.0f);
+            shader->setUniformValue("hasSpecularTex", 1.0f);
         }
         else {
-            ShaderManager::get(shader)->setUniformValue("hasSpecularTex", 0.0f);
+            shader->setUniformValue("hasSpecularTex", 0.0f);
         }
         glBindVertexArray(m_vao);
         glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, (void*)0);

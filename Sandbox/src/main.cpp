@@ -24,5 +24,7 @@ int main()
     EntityManager::addDirectionalLight(glm::vec3(0.0f, 10000.0f, 3000.0f), glm::vec3(3.0f));
     WaterRenderer::addTile(std::make_shared<WaterTile>(0.0f, 0.0f, 0.0f));
     
+    EntityRenderer::setDefaultShader("ToonShader");
+    
 	engine.start();
 }

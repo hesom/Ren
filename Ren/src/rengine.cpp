@@ -40,7 +40,9 @@ namespace ren
             Timer::tick();
             m_mainCamera->update();
 
-            ShaderManager::get("EntityShader")->setUniformMatrix("projectionMatrix", projectionMatrix);
+            auto entityDefaultShader = ShaderManager::get(EntityRenderer::getDefaultShader());
+
+            entityDefaultShader->setUniformMatrix("projectionMatrix", projectionMatrix);
             ShaderManager::get("WaterShader")->setUniformMatrix("projectionMatrix", projectionMatrix);
 
             if (WaterRenderer::getTiles().size() != 0) {
@@ -54,13 +56,13 @@ namespace ren
                 waterCamera->invertPitch();
 
                 //Water reflection pass
-                ShaderManager::get("EntityShader")->setUniformValue("plane", glm::vec4(0.0f, 1.0f, 0.0f, -waterTile->getHeight()));
+                entityDefaultShader->setUniformValue("plane", glm::vec4(0.0f, 1.0f, 0.0f, -waterTile->getHeight()));
                 waterFBOs->bindReflectionFramebuffer();
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
                 EntityRenderer::render(waterCamera);
                 waterFBOs->unbindCurrentFramebuffer();
                 //Water refraction pass
-                ShaderManager::get("EntityShader")->setUniformValue("plane", glm::vec4(0.0f, -1.0f, 0.0f, waterTile->getHeight()));
+                entityDefaultShader->setUniformValue("plane", glm::vec4(0.0f, -1.0f, 0.0f, waterTile->getHeight()));
                 waterFBOs->bindRefractionFramebuffer();
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
                 EntityRenderer::render(m_mainCamera);
@@ -68,7 +70,7 @@ namespace ren
             }
 
             //Main pass
-            ShaderManager::get("EntityShader")->setUniformValue("plane", glm::vec4(0.0f, -1.0f, 0.0f, 100000.0f));
+            entityDefaultShader->setUniformValue("plane", glm::vec4(0.0f, -1.0f, 0.0f, 100000.0f));
             EntityRenderer::render(m_mainCamera);
 
             WaterRenderer::render(m_mainCamera, waterFBOs);
@@ -104,5 +106,14 @@ namespace ren
             ;
 
         ShaderManager::add(vertexSource, fragmentSource, "WaterShader");
+
+        vertexSource =
+#include "graphics/shaders/toonshader.vert"
+            ;
+        fragmentSource =
+#include "graphics/shaders/toonshader.frag"
+            ;
+
+        ShaderManager::add(vertexSource, fragmentSource, "ToonShader");
     }
 }

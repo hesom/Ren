@@ -194,6 +194,8 @@
   <ItemGroup>
     <None Include="include\graphics\shaders\entityshader.frag" />
     <None Include="include\graphics\shaders\entityshader.vert" />
+    <None Include="include\graphics\shaders\toonshader.frag" />
+    <None Include="include\graphics\shaders\toonshader.vert" />
     <None Include="include\graphics\shaders\watershader.frag" />
     <None Include="include\graphics\shaders\watershader.vert" />
   </ItemGroup>

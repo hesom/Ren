@@ -1,10 +1,12 @@
 #pragma once
 #include <vector>
+#include <memory>
 
 #include <glm/glm.hpp>
 
 #include "glad/glad.h"
 #include "graphics/texture.h"
+#include "graphics/shaderprogram.h"
 
 namespace ren
 {
@@ -31,6 +33,6 @@ namespace ren
         auto getIndices() const -> const decltype(m_indices)&;
         auto setupBuffer() -> void;
         auto freeBuffer() -> void;
-        auto render(std::string shader) -> void;
+        auto render(std::shared_ptr<ShaderProgram> shader) -> void;
     };
 }

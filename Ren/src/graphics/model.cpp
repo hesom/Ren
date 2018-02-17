@@ -110,7 +110,7 @@ namespace ren
         }
     }
 
-    auto Model::render(std::string shader) -> void
+    auto Model::render(std::shared_ptr<ShaderProgram> shader) -> void
     {
         for (auto& mesh : m_meshes) {
             mesh->render(shader);

@@ -2,6 +2,7 @@
 #include <vector>
 #include "graphics/mesh.h"
 #include "graphics/texture.h"
+#include "graphics/shaderprogram.h"
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
@@ -22,6 +23,6 @@ namespace ren
         auto loadMaterialTextures(aiMaterial *mat, aiTextureType type, std::string typeName) -> std::vector<Texture>;
     public:
         Model(const char *path);
-        auto render(std::string shader) -> void;
+        auto render(std::shared_ptr<ShaderProgram> shader) -> void;
     };
 }

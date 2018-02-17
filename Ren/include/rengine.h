@@ -5,6 +5,7 @@
 #include "graphics/fpscamera.h"
 #include "graphics/entitymanager.h"
 #include "graphics/waterrenderer.h"
+#include "graphics/entityrenderer.h"
 
 namespace ren
 {

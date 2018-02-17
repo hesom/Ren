@@ -6,6 +6,7 @@
 #include "glm/glm.hpp"
 #include <iostream>
 #include "graphics/model.h"
+#include "graphics/shaderprogram.h"
 
 namespace ren
 {
@@ -19,6 +20,6 @@ namespace ren
         Entity(std::string path);
         auto setTransformation(glm::mat4 transformation) -> void;
         auto getTransformation() -> const decltype(m_transformation)&;
-        auto render(std::string shader) -> void;
+        auto render(std::shared_ptr<ShaderProgram> shader) -> void;
     };
 }

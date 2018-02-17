@@ -190,5 +190,11 @@
     <None Include="include\graphics\shaders\watershader.vert">
       <Filter>Header Files\graphics\shaders</Filter>
     </None>
+    <None Include="include\graphics\shaders\toonshader.frag">
+      <Filter>Header Files\graphics\shaders</Filter>
+    </None>
+    <None Include="include\graphics\shaders\toonshader.vert">
+      <Filter>Header Files\graphics\shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -8,9 +8,23 @@
 
 namespace ren
 {
+    std::string EntityRenderer::m_defaultShader = "EntityShader";
+
+
+    auto EntityRenderer::setDefaultShader(std::string shader) -> void
+    {
+        m_defaultShader = shader;
+    }
+
+    auto EntityRenderer::getDefaultShader() -> decltype(m_defaultShader)
+    {
+        return m_defaultShader;
+    }
+
     auto EntityRenderer::render(std::shared_ptr<Camera> camera) -> void
     {
-        ShaderManager::get("EntityShader")->bind();
+        auto shader = ShaderManager::get(m_defaultShader);
+        shader->bind();
         auto entities = EntityManager::getAllEntities();
         auto directionalLights = EntityManager::getAllLights();
         glm::mat4 viewMatrix = camera->getViewMatrix();
@@ -21,22 +35,22 @@ namespace ren
 
         for (int i = 0; i < MAX_LIGHTS; i++) {
             if (i < directionalLights.size()) {
-                ShaderManager::get("EntityShader")->setUniformValue("lightPos[" + std::to_string(i) + "]", directionalLights[i]->getPosition());
-                ShaderManager::get("EntityShader")->setUniformValue("lightColor[" + std::to_string(i) + "]", directionalLights[i]->getColor());
+                shader->setUniformValue("lightPos[" + std::to_string(i) + "]", directionalLights[i]->getPosition());
+                shader->setUniformValue("lightColor[" + std::to_string(i) + "]", directionalLights[i]->getColor());
             }
             else {
-                ShaderManager::get("EntityShader")->setUniformValue("lightPos[" + std::to_string(i) + "]", glm::vec3(0.0f));
-                ShaderManager::get("EntityShader")->setUniformValue("lightColor[" + std::to_string(i) + "]", glm::vec3(0.0f));
+                shader->setUniformValue("lightPos[" + std::to_string(i) + "]", glm::vec3(0.0f));
+                shader->setUniformValue("lightColor[" + std::to_string(i) + "]", glm::vec3(0.0f));
             }
         }
         
         for (auto entity : entities) {
             auto modelMatrix = entity->getTransformation();
             glm::mat4 normalMatrix = glm::transpose(glm::inverse(viewMatrix*modelMatrix));
-            ShaderManager::get("EntityShader")->setUniformMatrix("modelMatrix", modelMatrix);
-            ShaderManager::get("EntityShader")->setUniformMatrix("normalMatrix", normalMatrix);
-            ShaderManager::get("EntityShader")->setUniformMatrix("viewMatrix", viewMatrix);
-            entity->render("EntityShader");
+            shader->setUniformMatrix("modelMatrix", modelMatrix);
+            shader->setUniformMatrix("normalMatrix", normalMatrix);
+            shader->setUniformMatrix("viewMatrix", viewMatrix);
+            entity->render(shader);
         }
 
         glDisable(GL_CLIP_DISTANCE0);
