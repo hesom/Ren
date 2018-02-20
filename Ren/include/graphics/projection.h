@@ -14,6 +14,6 @@ namespace ren
     public:
         Projection();
         Projection(float fov, float nearPlane, float farPlane, float width, float height);
-        auto getProjectionMatrix() -> glm::mat4;
+        auto getProjectionMatrix() const -> glm::mat4;
     };
 }

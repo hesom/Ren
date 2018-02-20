@@ -4,13 +4,13 @@
 #include <iostream>
 namespace ren
 {
-    FPSCamera::FPSCamera() : Camera()
+    FPSCamera::FPSCamera()
     {
         InputManager::attachKeyListener(this);
         InputManager::attachMouseListener(this);
     }
 
-    FPSCamera::FPSCamera(glm::vec3 position, float pitch, float yaw) : Camera(position, pitch, yaw)
+    FPSCamera::FPSCamera(const glm::vec3 position, const float pitch, const float yaw) : Camera(position, pitch, yaw)
     {
         InputManager::attachKeyListener(this);
         InputManager::attachMouseListener(this);
@@ -22,12 +22,12 @@ namespace ren
         InputManager::detachMouseListener(this);
     }
 
-    auto FPSCamera::setCameraSpeed(float speed) -> void
+    auto FPSCamera::setCameraSpeed(const float speed) -> void
     {
         m_cameraSpeed = speed;
     }
 
-    auto FPSCamera::onKeyPressed(Key key, std::vector<KeyMod> mods) -> void
+    auto FPSCamera::onKeyPressed(const Key key, std::vector<KeyMod> mods) -> void
     {
         switch (key) {
         case Key::KEY_W:
@@ -56,7 +56,7 @@ namespace ren
         }
     }
 
-    auto FPSCamera::onKeyReleased(Key key, std::vector<KeyMod> mods) -> void
+    auto FPSCamera::onKeyReleased(const Key key, std::vector<KeyMod> mods) -> void
     {
         switch (key) {
         case Key::KEY_W:
@@ -89,23 +89,23 @@ namespace ren
         }
     }
 
-    auto FPSCamera::onMousePressed(MouseButton button, std::vector<KeyMod> mods) -> void
+    auto FPSCamera::onMousePressed(const MouseButton button, std::vector<KeyMod> mods) -> void
     {
         if (button == MouseButton::MOUSE_1) {
             m_leftMouseDown = true;
         }
     }
 
-    auto FPSCamera::onMouseReleased(MouseButton button, std::vector<KeyMod> mods) -> void
+    auto FPSCamera::onMouseReleased(const MouseButton button, std::vector<KeyMod> mods) -> void
     {
         if (button == MouseButton::MOUSE_1) {
             m_leftMouseDown = false;
         }
     }
 
-    auto FPSCamera::onMouseMoved(double xpos, double ypos, double dx, double dy) -> void
+    auto FPSCamera::onMouseMoved(double xpos, double ypos, const double dx, const double dy) -> void
     {
-        float sensitivity = 0.5f;
+        const auto sensitivity = 0.5f;
         m_yaw += (dx*sensitivity);
         m_pitch += (dy*sensitivity);
         if (m_pitch > 89.0f) {
@@ -122,7 +122,7 @@ namespace ren
 
     auto FPSCamera::update() -> void
     {
-        float speed = m_cameraSpeed * Timer::deltaTime();
+        const auto speed = m_cameraSpeed * Timer::deltaTime();
         if (m_forwardPressed) {
             m_position += speed * m_viewDirection;
         }

@@ -33,8 +33,8 @@ namespace ren
     auto Rengine::start() -> void
     {
         loadShaders();
-        glm::mat4 projectionMatrix = m_projection->getProjectionMatrix();
-        auto waterFBOs = std::make_shared<WaterFramebuffers>();
+        const auto projectionMatrix = m_projection->getProjectionMatrix();
+        auto waterFbOs = std::make_shared<WaterFramebuffers>();
 
         while (!WindowManager::exitRequested()) {
             Timer::tick();
@@ -45,9 +45,9 @@ namespace ren
             entityDefaultShader->setUniformMatrix("projectionMatrix", projectionMatrix);
             ShaderManager::get("WaterShader")->setUniformMatrix("projectionMatrix", projectionMatrix);
 
-            if (WaterRenderer::getTiles().size() != 0) {
-                auto waterTile = WaterRenderer::getTiles().at(0);
-                float cameraDistance = 2 * (m_mainCamera->getPosition().y - waterTile->getHeight());
+            if (!WaterRenderer::getTiles().empty()) {
+                const auto waterTile = WaterRenderer::getTiles().at(0);
+                const auto cameraDistance = 2 * (m_mainCamera->getPosition().y - waterTile->getHeight());
                 auto waterCamera = std::make_shared<Camera>(*m_mainCamera);
                 waterCamera->setPosition(glm::vec3(
                     waterCamera->getPosition().x,
@@ -57,28 +57,28 @@ namespace ren
 
                 //Water reflection pass
                 entityDefaultShader->setUniformValue("plane", glm::vec4(0.0f, 1.0f, 0.0f, -waterTile->getHeight()));
-                waterFBOs->bindReflectionFramebuffer();
+                waterFbOs->bindReflectionFramebuffer();
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
                 EntityRenderer::render(waterCamera);
-                waterFBOs->unbindCurrentFramebuffer();
+                waterFbOs->unbindCurrentFramebuffer();
                 //Water refraction pass
                 entityDefaultShader->setUniformValue("plane", glm::vec4(0.0f, -1.0f, 0.0f, waterTile->getHeight()));
-                waterFBOs->bindRefractionFramebuffer();
+                waterFbOs->bindRefractionFramebuffer();
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
                 EntityRenderer::render(m_mainCamera);
-                waterFBOs->unbindCurrentFramebuffer();
+                waterFbOs->unbindCurrentFramebuffer();
             }
 
             //Main pass
             entityDefaultShader->setUniformValue("plane", glm::vec4(0.0f, -1.0f, 0.0f, 100000.0f));
             EntityRenderer::render(m_mainCamera);
 
-            WaterRenderer::render(m_mainCamera, waterFBOs);
+            WaterRenderer::render(m_mainCamera, waterFbOs);
 
             WindowManager::updateWindow();
         }
 
-        waterFBOs->cleanUp();
+        waterFbOs->cleanUp();
         WindowManager::destroyWindow();
     }
 
@@ -87,7 +87,7 @@ namespace ren
         WindowManager::init();
         WindowManager::createWindow(1280, 720, "My Window");
     }
-    auto Rengine::loadShaders() -> void
+    auto Rengine::loadShaders() const -> void
     {
         std::string vertexSource =
 #include "graphics/shaders/entityshader.vert"

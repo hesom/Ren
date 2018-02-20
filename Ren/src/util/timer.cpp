@@ -7,7 +7,7 @@ namespace ren
 
     auto Timer::tick() -> void
     {
-        float currentFrame = glfwGetTime();
+        const float currentFrame = glfwGetTime();
         m_deltaTime = currentFrame - m_lastFrame;
         m_lastFrame = currentFrame;
     }

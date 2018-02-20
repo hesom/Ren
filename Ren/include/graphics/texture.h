@@ -7,9 +7,9 @@ namespace ren
     class Texture
     {
     private:
-        GLuint m_textureID;
-        GLuint m_width;
-        GLuint m_height;
+        GLuint m_textureId = 0;
+        GLuint m_width = 0;
+        GLuint m_height = 0;
         std::string m_type;
 
     public:
@@ -22,11 +22,11 @@ namespace ren
             GLboolean mipmaps,
             GLenum internalFormat
         );
-        auto buffer(const unsigned char* data, int channels) -> void;
-        auto bind() -> void;
-        auto bind(GLuint textureUnit) -> void;
-        auto unbind() -> void;
-        auto setType(std::string type) -> void;
+        auto buffer(const unsigned char* data, int channels) const -> void;
+        auto bind() const -> void;
+        auto bind(GLuint textureUnit) const -> void;
+        static auto unbind() -> void;
+        auto setType(const std::string& type) -> void;
         auto getType() const -> const decltype(m_type)&;
     };
 }

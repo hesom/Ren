@@ -6,10 +6,10 @@
 
 namespace ren
 {
-    auto Model::loadModel(std::string path) -> void
+    auto Model::loadModel(const std::string& path) -> void
     {
         Assimp::Importer importer;
-        const aiScene *scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
+        const auto scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace | aiProcess_GenSmoothNormals);
 
         if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
             std::cout << "ERROR::ASSIMP::" << importer.GetErrorString() << std::endl;
@@ -23,7 +23,7 @@ namespace ren
     auto Model::processNode(aiNode * node, const aiScene * scene) -> void
     {
         for (unsigned int i = 0; i < node->mNumMeshes; i++) {
-            aiMesh *mesh = scene->mMeshes[node->mMeshes[i]];
+            const auto mesh = scene->mMeshes[node->mMeshes[i]];
             m_meshes.push_back(processMesh(mesh, scene));
         }
 
@@ -66,21 +66,21 @@ namespace ren
         }
 
         for (unsigned int i = 0; i < mesh->mNumFaces; i++) {
-            aiFace face = mesh->mFaces[i];
+            const auto face = mesh->mFaces[i];
             for (unsigned int j = 0; j < face.mNumIndices; j++) {
                 indices.push_back(face.mIndices[j]);
             }
         }
 
         if (mesh->mMaterialIndex >= 0) {
-            aiMaterial *material = scene->mMaterials[mesh->mMaterialIndex];
-            std::vector<Texture> diffuseMaps = loadMaterialTextures(material,
+            auto *material = scene->mMaterials[mesh->mMaterialIndex];
+            auto diffuseMaps = loadMaterialTextures(material,
                 aiTextureType_DIFFUSE, "texture_diffuse");
             textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
-            std::vector<Texture> specularMaps = loadMaterialTextures(material,
+            auto specularMaps = loadMaterialTextures(material,
                 aiTextureType_SPECULAR, "texture_specular");
             textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
-            std::vector<Texture> normalMaps = loadMaterialTextures(material,
+            auto normalMaps = loadMaterialTextures(material,
                 aiTextureType_HEIGHT, "texture_normal");
             textures.insert(textures.end(), normalMaps.begin(), normalMaps.end());
         }
@@ -88,7 +88,7 @@ namespace ren
         return std::make_shared<Mesh>(vertices, indices, textures);
     }
 
-    auto Model::loadMaterialTextures(aiMaterial * mat, aiTextureType type, std::string typeName) -> std::vector<Texture>
+    auto Model::loadMaterialTextures(aiMaterial * mat, aiTextureType type, const std::string& typeName) -> std::vector<Texture>
     {
         std::vector<Texture> textures;
         for (unsigned int i = 0; i < mat->GetTextureCount(type); i++) {
@@ -110,7 +110,7 @@ namespace ren
         }
     }
 
-    auto Model::render(std::shared_ptr<ShaderProgram> shader) -> void
+    auto Model::render(const std::shared_ptr<ShaderProgram>& shader) -> void
     {
         for (auto& mesh : m_meshes) {
             mesh->render(shader);

@@ -11,8 +11,8 @@ namespace ren
     private:
         static std::string m_defaultShader;
     public:
-        static auto setDefaultShader(std::string shader) -> void;
+        static auto setDefaultShader(const std::string& shader) -> void;
         static auto getDefaultShader() -> decltype(m_defaultShader);
-        static auto render(std::shared_ptr<Camera> camera) -> void;
+        static auto render(const std::shared_ptr<Camera>& camera) -> void;
     };
 }

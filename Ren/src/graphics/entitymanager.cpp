@@ -19,7 +19,7 @@ namespace ren
     auto EntityManager::processNode(aiNode * node, const aiScene * scene) -> void
     {
         for (unsigned int i = 0; i < node->mNumMeshes; i++) {
-            aiMesh *mesh = scene->mMeshes[node->mMeshes[i]];
+            auto mesh = scene->mMeshes[node->mMeshes[i]];
         }
     }
 
@@ -36,7 +36,7 @@ namespace ren
         return m_directionalLights.at(m_directionalLights.size()-1);
     }
 
-    auto EntityManager::get(size_t handle) -> std::shared_ptr<Entity>
+    auto EntityManager::get(const size_t handle) -> std::shared_ptr<Entity>
     {
         return m_entities.at(handle);
     }

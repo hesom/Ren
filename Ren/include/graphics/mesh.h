@@ -24,15 +24,16 @@ namespace ren
         std::vector<Vertex> m_vertices;
         std::vector<unsigned int> m_indices;
         std::vector<Texture> m_textures;
-        GLuint m_vbo, m_vao, m_ebo;
+        GLuint m_vbo{}, m_vao{}, m_ebo{};
         
     public:
-        Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures);
+        Mesh(const std::vector<Vertex>& vertices, const std::vector<unsigned int>& indices, const std::vector<Texture>&
+             textures);
         ~Mesh();
         auto getVertices() const -> const decltype(m_vertices)&;
         auto getIndices() const -> const decltype(m_indices)&;
         auto setupBuffer() -> void;
-        auto freeBuffer() -> void;
-        auto render(std::shared_ptr<ShaderProgram> shader) -> void;
+        auto freeBuffer() const -> void;
+        auto render(const std::shared_ptr<ShaderProgram>& shader) -> void;
     };
 }

@@ -12,7 +12,7 @@ namespace ren {
 	class WindowManager
 	{
 	private:
-		static GLFWwindow* window;
+		static GLFWwindow* m_window;
         static int m_width;
         static int m_height;
 #ifdef _DEBUG
@@ -25,7 +25,7 @@ namespace ren {
 		static auto createWindow(
 			const int width,
 			const int height,
-			const std::string title) -> void;
+			const std::string& title) -> void;
 		static auto destroyWindow() -> void;
 		static auto exitRequested() -> bool;
 		static auto updateWindow() -> void;

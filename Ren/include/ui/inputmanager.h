@@ -15,8 +15,8 @@ namespace ren
 		InputManager();
 		static double m_mouseX_old;
 		static double m_mouseY_old;
-		static std::vector<IKeyListener*> keyListeners;
-		static std::vector<IMouseListener*> mouseListeners;
+		static std::vector<IKeyListener*> m_keyListeners;
+		static std::vector<IMouseListener*> m_mouseListeners;
 	public:
 		InputManager(InputManager const&) = delete;
 		void operator=(InputManager const&) = delete;
@@ -40,7 +40,7 @@ namespace ren
 		static auto handleMousePressedEvent(const int button, const int mods) -> void;
 
 		/*! Handles the single event after a key is released.
-			\param key the glfw key id
+			\param button the glfw key id
 			\param mods the glfw mod keys pressed, encoded in a single int (shift, alt, etc)
 		*/
 		static auto handleMouseReleasedEvent(const int button, const int mods) -> void;
@@ -81,7 +81,7 @@ namespace ren
 		/*! Maps glfw key enum values to a safer internal enum class format */
 		static auto mapKey(int glfwKey) -> Key;
 		/*! Maps glfw mod enum values to a safer internal enum class format */
-		static auto mapMods(int glfwMod) -> std::vector<KeyMod>;
+		static auto mapMods(int glfwKey) -> std::vector<KeyMod>;
 		/*! Maps glfw mouse button enum values to a safer internal enum class format */
 		static auto mapMouse(int glfwMouse) -> MouseButton;
 	};

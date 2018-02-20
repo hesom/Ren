@@ -7,7 +7,7 @@
 namespace ren
 {
 
-	GLFWwindow* WindowManager::window;
+	GLFWwindow* WindowManager::m_window;
     int WindowManager::m_width = 0;
     int WindowManager::m_height = 0;
 
@@ -16,7 +16,7 @@ namespace ren
 		return glfwInit();
 	}
 
-	auto WindowManager::createWindow(const int width, const int height, const std::string title) -> void
+	auto WindowManager::createWindow(const int width, const int height, const std::string& title) -> void
 	{
         m_width = width;
         m_height = height;
@@ -29,13 +29,13 @@ namespace ren
 #ifdef _DEBUG
         glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
 #endif
-		window = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
-		ASSERT(window);
+		m_window = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
+		ASSERT(m_window);
 
-		glfwMakeContextCurrent(window);
-		APICALL(gladLoadGLLoader((GLADloadproc)glfwGetProcAddress));
+		glfwMakeContextCurrent(m_window);
+		APICALL(gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress)));
 
-        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+        glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 #ifdef _DEBUG
         GLint flags;
@@ -45,14 +45,14 @@ namespace ren
         }
 #endif
 
-		glfwSetFramebufferSizeCallback(window, [](GLFWwindow* window, int width, int height) {
+		glfwSetFramebufferSizeCallback(m_window, [](GLFWwindow* window, int width, int height) {
 			glViewport(0, 0, width, height);
 		});
 
 		glViewport(0, 0, width, height);
 		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
-		glfwSetKeyCallback(window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
+		glfwSetKeyCallback(m_window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
 			if (action == GLFW_PRESS) {
                 if (key == GLFW_KEY_ESCAPE) {
                     glfwSetWindowShouldClose(window, true);
@@ -63,7 +63,7 @@ namespace ren
 				InputManager::handleKeyReleasedEvent(key, mods);
 			}
 		});
-		glfwSetMouseButtonCallback(window, [](GLFWwindow* window, int button, int action, int mods) {
+		glfwSetMouseButtonCallback(m_window, [](GLFWwindow* window, int button, int action, int mods) {
 			if (action == GLFW_PRESS) {
 				InputManager::handleMousePressedEvent(button, mods);
 			}
@@ -71,10 +71,10 @@ namespace ren
 				InputManager::handleMouseReleasedEvent(button, mods);
 			}
 		});
-		glfwSetCursorPosCallback(window, [](GLFWwindow* window, double xpos, double ypos) {
+		glfwSetCursorPosCallback(m_window, [](GLFWwindow* window, double xpos, double ypos) {
 			InputManager::handleCursorEvent(xpos, ypos);
 		});
-		glfwSetScrollCallback(window, [](GLFWwindow* window, double xoffset, double yoffset) {
+		glfwSetScrollCallback(m_window, [](GLFWwindow* window, double xoffset, double yoffset) {
 			InputManager::handleScrollEvent(xoffset, yoffset);
 		});
 
@@ -82,18 +82,18 @@ namespace ren
 
 	auto WindowManager::destroyWindow() -> void
 	{
-		glfwDestroyWindow(window);
+		glfwDestroyWindow(m_window);
 	}
 
 	auto WindowManager::exitRequested() -> bool
 	{
-		return glfwWindowShouldClose(window);
+		return glfwWindowShouldClose(m_window);
 	}
 
 	auto WindowManager::updateWindow() -> void
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(window);
+		glfwSwapBuffers(m_window);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
@@ -136,6 +136,7 @@ namespace ren
             case GL_DEBUG_SOURCE_THIRD_PARTY:     std::cout << "Source: Third Party"; break;
             case GL_DEBUG_SOURCE_APPLICATION:     std::cout << "Source: Application"; break;
             case GL_DEBUG_SOURCE_OTHER:           std::cout << "Source: Other"; break;
+            default: ;
             } std::cout << std::endl;
 
             switch (type)
@@ -149,6 +150,7 @@ namespace ren
             case GL_DEBUG_TYPE_PUSH_GROUP:          std::cout << "Type: Push Group"; break;
             case GL_DEBUG_TYPE_POP_GROUP:           std::cout << "Type: Pop Group"; break;
             case GL_DEBUG_TYPE_OTHER:               std::cout << "Type: Other"; break;
+            default: ;
             } std::cout << std::endl;
 
             switch (severity)
@@ -157,6 +159,7 @@ namespace ren
             case GL_DEBUG_SEVERITY_MEDIUM:       std::cout << "Severity: medium"; break;
             case GL_DEBUG_SEVERITY_LOW:          std::cout << "Severity: low"; break;
             case GL_DEBUG_SEVERITY_NOTIFICATION: std::cout << "Severity: notification"; break;
+            default: ;
             } std::cout << std::endl;
             std::cout << std::endl;
         }, nullptr);

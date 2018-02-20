@@ -2,7 +2,7 @@
 
 namespace ren
 {
-    Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures)
+    Mesh::Mesh(const std::vector<Vertex>& vertices, const std::vector<unsigned int>& indices, const std::vector<Texture>& textures)
     {
         this->m_vertices = vertices;
         this->m_indices = indices;
@@ -34,13 +34,13 @@ namespace ren
         glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
         glBufferData(GL_ARRAY_BUFFER, m_vertices.size() * sizeof(Vertex), m_vertices.data(), GL_STATIC_DRAW);
         
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, position));
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(offsetof(Vertex, position)));
         glEnableVertexAttribArray(0);
-        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, normal));
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(offsetof(Vertex, normal)));
         glEnableVertexAttribArray(1);
-        glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, uv));
+        glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(offsetof(Vertex, uv)));
         glEnableVertexAttribArray(2);
-        glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, tangent));
+        glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(offsetof(Vertex, tangent)));
         glEnableVertexAttribArray(3);
 
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebo);
@@ -49,14 +49,14 @@ namespace ren
         glBindVertexArray(0);
     }
 
-    auto Mesh::freeBuffer() -> void
+    auto Mesh::freeBuffer() const -> void
     {
         glDeleteVertexArrays(1, &m_vao);
         glDeleteBuffers(1, &m_vbo);
         glDeleteBuffers(1, &m_ebo);
     }
 
-    auto Mesh::render(std::shared_ptr<ShaderProgram> shader) -> void
+    auto Mesh::render(const std::shared_ptr<ShaderProgram>& shader) -> void
     {
         bool hasNormalTex = false;
         bool hasSpecularTex = false;
@@ -65,7 +65,7 @@ namespace ren
         shader->setUniformValue("normalMap", 1);
         shader->setUniformValue("specularMap", 2);
 
-        for (auto tex : m_textures) {
+        for (const auto& tex : m_textures) {
             if (tex.getType() == "texture_diffuse") {
                 tex.bind(0);
             }
@@ -91,6 +91,6 @@ namespace ren
             shader->setUniformValue("hasSpecularTex", 0.0f);
         }
         glBindVertexArray(m_vao);
-        glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, (void*)0);
+        glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, static_cast<void*>(nullptr));
     }
 }

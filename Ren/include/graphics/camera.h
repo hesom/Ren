@@ -8,13 +8,14 @@ namespace ren
     {
     protected:
         glm::vec3 m_position;
-        glm::vec3 m_viewDirection;
+        glm::vec3 m_viewDirection{};
         glm::vec3 m_upVector;
-        glm::vec3 m_rightVector;
+        glm::vec3 m_rightVector{};
         float m_yaw;
         float m_pitch;
 
     public:
+        virtual ~Camera() = default;
         Camera();
         Camera(const glm::vec3& position, float pitch, float yaw);
 

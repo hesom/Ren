@@ -17,7 +17,7 @@ namespace ren
         initializeRefractionFramebuffer();
     }
 
-    auto WaterFramebuffers::cleanUp() -> void
+    auto WaterFramebuffers::cleanUp() const -> void
     {
         glDeleteFramebuffers(1, &m_reflectionFramebuffer);
         glDeleteTextures(1, &m_reflectionTexture);
@@ -38,7 +38,8 @@ namespace ren
         bindFramebuffer(m_refractionFramebuffer, refraction_width, refraction_height);
     }
 
-    auto WaterFramebuffers::unbindCurrentFramebuffer() -> void
+    // ReSharper disable once CppMemberFunctionMayBeStatic
+    auto WaterFramebuffers::unbindCurrentFramebuffer() const -> void
     {
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
         glViewport(0, 0, WindowManager::getWidth(), WindowManager::getHeight());
@@ -75,14 +76,16 @@ namespace ren
         unbindCurrentFramebuffer();
     }
 
-    auto WaterFramebuffers::bindFramebuffer(GLuint frameBuffer, int width, int height) -> void
+    // ReSharper disable once CppMemberFunctionMayBeStatic
+    auto WaterFramebuffers::bindFramebuffer(const GLuint frameBuffer, const int width, const int height) const -> void
     {
         glBindTexture(GL_TEXTURE_2D, 0);
         glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
         glViewport(0, 0, width, height);
     }
 
-    auto WaterFramebuffers::createFramebuffer() -> GLuint
+    // ReSharper disable once CppMemberFunctionMayBeStatic
+    auto WaterFramebuffers::createFramebuffer() const -> GLuint
     {
         GLuint frameBuffer;
         glGenFramebuffers(1, &frameBuffer);
@@ -91,7 +94,8 @@ namespace ren
         return frameBuffer;
     }
 
-    auto WaterFramebuffers::createTextureAttachment(int width, int height) -> GLuint
+    // ReSharper disable once CppMemberFunctionMayBeStatic
+    auto WaterFramebuffers::createTextureAttachment(const int width, const int height) const -> GLuint
     {
         GLuint texture;
         glGenTextures(1, &texture);
@@ -103,7 +107,8 @@ namespace ren
         return texture;
     }
 
-    auto WaterFramebuffers::createDepthTextureAttachment(int width, int height) -> GLuint
+    // ReSharper disable once CppMemberFunctionMayBeStatic
+    auto WaterFramebuffers::createDepthTextureAttachment(const int width, const int height) const -> GLuint
     {
         GLuint texture;
         glGenTextures(1, &texture);
@@ -115,7 +120,8 @@ namespace ren
         return texture;
     }
 
-    auto WaterFramebuffers::createDepthBufferAttachment(int width, int height) -> GLuint
+    // ReSharper disable once CppMemberFunctionMayBeStatic
+    auto WaterFramebuffers::createDepthBufferAttachment(const int width, const int height) const -> GLuint
     {
         GLuint depthBuffer;
         glGenRenderbuffers(1, &depthBuffer);

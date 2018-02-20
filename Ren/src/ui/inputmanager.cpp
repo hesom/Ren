@@ -8,36 +8,34 @@ namespace ren
 {
     double InputManager::m_mouseX_old = 0;
     double InputManager::m_mouseY_old = 0;
-    std::vector<IKeyListener*> InputManager::keyListeners;
-    std::vector<IMouseListener*> InputManager::mouseListeners;
-	InputManager::InputManager()
-	{
-	}
+    std::vector<IKeyListener*> InputManager::m_keyListeners;
+    std::vector<IMouseListener*> InputManager::m_mouseListeners;
+	InputManager::InputManager() = default;
 
-	auto InputManager::handleKeyPressedEvent(const int key, const int mods) -> void
+    auto InputManager::handleKeyPressedEvent(const int key, const int mods) -> void
 	{
-		for (auto& listener : keyListeners) {
+		for (auto& listener : m_keyListeners) {
 			listener->onKeyPressed(mapKey(key), mapMods(mods));
 		}
 	}
 
 	auto InputManager::handleKeyReleasedEvent(const int key, const int mods) -> void
 	{
-		for (auto& listener : keyListeners) {
+		for (auto& listener : m_keyListeners) {
 			listener->onKeyReleased(mapKey(key), mapMods(mods));
 		}
 	}
 
 	auto InputManager::handleMousePressedEvent(const int button, const int mods) -> void
 	{
-		for (auto& listener : mouseListeners) {
+		for (auto& listener : m_mouseListeners) {
 			listener->onMousePressed(mapMouse(button), mapMods(mods));
 		}
 	}
 
 	auto InputManager::handleMouseReleasedEvent(const int button, const int mods) -> void
 	{
-		for (auto& listener : mouseListeners) {
+		for (auto& listener : m_mouseListeners) {
 			listener->onMouseReleased(mapMouse(button), mapMods(mods));
 		}
 	}
@@ -56,43 +54,43 @@ namespace ren
 		double dy = m_mouseY_old - ypos;
 		m_mouseX_old = xpos;
 		m_mouseY_old = ypos;
-		for (auto& listener : mouseListeners) {
+		for (auto& listener : m_mouseListeners) {
 			listener->onMouseMoved(xpos, ypos, dx, dy);
 		}
 	}
 
 	auto InputManager::handleScrollEvent(const double xoffset, const double yoffset) -> void
 	{
-		for (auto& listener : mouseListeners) {
+		for (auto& listener : m_mouseListeners) {
 			listener->onMouseScroll(xoffset, yoffset);
 		}
 	}
 
 	auto InputManager::attachMouseListener(IMouseListener* mouseListener) -> void
 	{
-		mouseListeners.push_back(mouseListener);
+		m_mouseListeners.push_back(mouseListener);
 	}
 
 	auto InputManager::detachMouseListener(const IMouseListener* mouseListener) -> void
 	{
-		mouseListeners.erase(
-			std::remove(mouseListeners.begin(), mouseListeners.end(), mouseListener),
-			mouseListeners.end());
+		m_mouseListeners.erase(
+			std::remove(m_mouseListeners.begin(), m_mouseListeners.end(), mouseListener),
+			m_mouseListeners.end());
 	}
 
 	auto InputManager::attachKeyListener(IKeyListener* keyListener) -> void
 	{
-		keyListeners.push_back(keyListener);
+		m_keyListeners.push_back(keyListener);
 	}
 
 	auto InputManager::detachKeyListener(const IKeyListener* keyListener) -> void
 	{
-		keyListeners.erase(
-			std::remove(keyListeners.begin(), keyListeners.end(), keyListener),
-			keyListeners.end());
+		m_keyListeners.erase(
+			std::remove(m_keyListeners.begin(), m_keyListeners.end(), keyListener),
+			m_keyListeners.end());
 	}
 
-	auto InputManager::mapKey(int glfwKey) -> Key
+	auto InputManager::mapKey(const int glfwKey) -> Key
 	{
 		switch (glfwKey) {
 		case GLFW_KEY_0:
@@ -226,7 +224,7 @@ namespace ren
 		}
 	}
 
-	auto InputManager::mapMouse(int glfwMouse) -> MouseButton
+	auto InputManager::mapMouse(const int glfwMouse) -> MouseButton
 	{
 		switch (glfwMouse) {
 		case GLFW_MOUSE_BUTTON_1:

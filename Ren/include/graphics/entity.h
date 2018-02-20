@@ -14,12 +14,12 @@ namespace ren
     {
     private:
         std::shared_ptr<Model> m_model;
-        glm::mat4 m_transformation;
+        glm::mat4 m_transformation{};
 
     public:
-        Entity(std::string path);
+        explicit Entity(const std::string& path);
         auto setTransformation(glm::mat4 transformation) -> void;
-        auto getTransformation() -> const decltype(m_transformation)&;
-        auto render(std::shared_ptr<ShaderProgram> shader) -> void;
+        auto getTransformation() const -> const decltype(m_transformation)&;
+        auto render(const std::shared_ptr<ShaderProgram>& shader) const -> void;
     };
 }

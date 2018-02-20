@@ -18,11 +18,11 @@ namespace ren
         m_upVector = glm::cross(m_viewDirection, m_rightVector);
     }
 
-    Camera::Camera(const glm::vec3& position, float pitch, float yaw) :
+    Camera::Camera(const glm::vec3& position, const float pitch, const float yaw) :
         m_position(position),
+        m_upVector(0.0f, 1.0f, 0.0f),
         m_yaw(yaw),
-        m_pitch(pitch),
-        m_upVector(0.0f, 1.0f, 0.0f)
+        m_pitch(pitch)
     {
         m_viewDirection = glm::normalize(glm::vec3(
             glm::cos(glm::radians(m_pitch))*glm::sin(glm::radians(m_yaw)),
@@ -41,7 +41,7 @@ namespace ren
         return m_position;
     }
 
-    auto Camera::setRotation(float pitch, float yaw) -> void
+    auto Camera::setRotation(const float pitch, const float yaw) -> void
     {
         m_yaw = yaw;
         m_pitch = pitch;

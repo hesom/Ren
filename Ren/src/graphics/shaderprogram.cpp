@@ -3,7 +3,7 @@
 #include <vector>
 #include <iostream>
 
-auto ShaderProgram::verifyShader(GLuint shaderId) -> bool
+auto ShaderProgram::verifyShader(const GLuint shaderId) -> bool
 {
     //copied from https://www.khronos.org/opengl/wiki/Shader_Compilation
     GLint success = 0;
@@ -16,17 +16,17 @@ auto ShaderProgram::verifyShader(GLuint shaderId) -> bool
         glGetShaderInfoLog(shaderId, maxLength, &maxLength, &errorLog[0]);
 
         glDeleteShader(shaderId);
-        std::string log(errorLog.begin(), errorLog.end());
+        const std::string log(errorLog.begin(), errorLog.end());
         std::cout << log << std::endl;
         return false;
     }
     return true;
 }
 
-auto ShaderProgram::verifyProgram(GLuint programId) -> bool
+auto ShaderProgram::verifyProgram(const GLuint programId) -> bool
 {
     GLint isLinked = 0;
-    glGetProgramiv(programId, GL_LINK_STATUS, (int*)&isLinked);
+    glGetProgramiv(programId, GL_LINK_STATUS, static_cast<int*>(&isLinked));
     if (isLinked == GL_FALSE) {
         GLint maxLength = 0;
         glGetProgramiv(programId, GL_INFO_LOG_LENGTH, &maxLength);
@@ -34,7 +34,7 @@ auto ShaderProgram::verifyProgram(GLuint programId) -> bool
         std::vector<GLchar> infoLog(maxLength);
         glGetProgramInfoLog(programId, maxLength, &maxLength, &infoLog[0]);
         glDeleteProgram(programId);
-        std::string log(infoLog.begin(), infoLog.end());
+        const std::string log(infoLog.begin(), infoLog.end());
         std::cout << log << std::endl;
         return false;
     }
@@ -47,11 +47,11 @@ ShaderProgram::ShaderProgram()
     m_programId = glCreateProgram();
 }
 
-auto ShaderProgram::attachVertexShader(std::string source) -> void
+auto ShaderProgram::attachVertexShader(const std::string& source) -> void
 {
-    GLuint vertexShaderId = glCreateShader(GL_VERTEX_SHADER);
-    const char *c_str = source.c_str();
-    glShaderSource(vertexShaderId, 1, &c_str, nullptr);
+    const auto vertexShaderId = glCreateShader(GL_VERTEX_SHADER);
+    auto cStr = source.c_str();
+    glShaderSource(vertexShaderId, 1, &cStr, nullptr);
     glCompileShader(vertexShaderId);
 #ifdef _DEBUG
     verifyShader(vertexShaderId);
@@ -60,11 +60,11 @@ auto ShaderProgram::attachVertexShader(std::string source) -> void
     m_attachedShaders.push_back(vertexShaderId);
 }
 
-auto ShaderProgram::attachFragmentShader(std::string source) -> void
+auto ShaderProgram::attachFragmentShader(const std::string& source) -> void
 {
-    GLuint fragmentShaderId = glCreateShader(GL_FRAGMENT_SHADER);
-    const char *c_str = source.c_str();
-    glShaderSource(fragmentShaderId, 1, &c_str, nullptr);
+    const auto fragmentShaderId = glCreateShader(GL_FRAGMENT_SHADER);
+    auto cStr = source.c_str();
+    glShaderSource(fragmentShaderId, 1, &cStr, nullptr);
     glCompileShader(fragmentShaderId);
 #ifdef _DEBUG
     verifyShader(fragmentShaderId);
@@ -73,11 +73,11 @@ auto ShaderProgram::attachFragmentShader(std::string source) -> void
     m_attachedShaders.push_back(fragmentShaderId);
 }
 
-auto ShaderProgram::attachGeometryShader(std::string source) -> void
+auto ShaderProgram::attachGeometryShader(const std::string& source) -> void
 {
-    GLuint geometryShaderId = glCreateShader(GL_GEOMETRY_SHADER);
-    const char *c_str = source.c_str();
-    glShaderSource(geometryShaderId, 1, &c_str, nullptr);
+    const auto geometryShaderId = glCreateShader(GL_GEOMETRY_SHADER);
+    auto cStr = source.c_str();
+    glShaderSource(geometryShaderId, 1, &cStr, nullptr);
     glCompileShader(geometryShaderId);
 #ifdef _DEBUG
     verifyShader(geometryShaderId);
@@ -94,50 +94,50 @@ auto ShaderProgram::destroy() -> void
     glDeleteProgram(m_programId);
 }
 
-auto ShaderProgram::setUniformMatrix(const std::string& location, const glm::mat4& matrix) -> void
+auto ShaderProgram::setUniformMatrix(const std::string& location, const glm::mat4& matrix) const -> void
 {
     this->bind();
-    GLint loc = glGetUniformLocation(m_programId, location.c_str());
+    const auto loc = glGetUniformLocation(m_programId, location.c_str());
     if (loc == -1) {
         std::cout << "Warning: no uniform location with name " << location << std::endl;
     }
     glUniformMatrix4fv(loc, 1, GL_FALSE, glm::value_ptr(matrix));
 }
 
-auto ShaderProgram::setUniformValue(const std::string & location, const glm::vec3& vector) -> void
+auto ShaderProgram::setUniformValue(const std::string & location, const glm::vec3& vector) const -> void
 {
     this->bind();
-    GLint loc = glGetUniformLocation(m_programId, location.c_str());
+    const auto loc = glGetUniformLocation(m_programId, location.c_str());
     if (loc == -1) {
         std::cout << "Warning: no uniform location with name " << location << std::endl;
     }
     glUniform3fv(loc, 1, glm::value_ptr(vector));
 }
 
-auto ShaderProgram::setUniformValue(const std::string & location, const glm::vec4 & vector) -> void
+auto ShaderProgram::setUniformValue(const std::string & location, const glm::vec4 & vector) const -> void
 {
     this->bind();
-    GLint loc = glGetUniformLocation(m_programId, location.c_str());
+    const auto loc = glGetUniformLocation(m_programId, location.c_str());
     if (loc == -1) {
         std::cout << "Warning: no uniform location with name " << location << std::endl;
     }
     glUniform4fv(loc, 1, glm::value_ptr(vector));
 }
 
-auto ShaderProgram::setUniformValue(const std::string & location, float val) -> void
+auto ShaderProgram::setUniformValue(const std::string & location, const float val) const -> void
 {
     this->bind();
-    GLint loc = glGetUniformLocation(m_programId, location.c_str());
+    const auto loc = glGetUniformLocation(m_programId, location.c_str());
     if (loc == -1) {
         std::cout << "Warning: no uniform location with name " << location << std::endl;
     }
     glUniform1f(loc, val);
 }
 
-auto ShaderProgram::setUniformValue(const std::string & location, int val) -> void
+auto ShaderProgram::setUniformValue(const std::string & location, const int val) const -> void
 {
     this->bind();
-    GLint loc = glGetUniformLocation(m_programId, location.c_str());
+    const auto loc = glGetUniformLocation(m_programId, location.c_str());
     if (loc == -1) {
         std::cout << "Warning: no uniform location with name " << location << std::endl;
     }
@@ -147,7 +147,7 @@ auto ShaderProgram::setUniformValue(const std::string & location, int val) -> vo
 auto ShaderProgram::setUniformValueArray(const std::string & location, const glm::vec3* arr, size_t length) -> void
 {
     this->bind();
-    GLint loc = glGetUniformLocation(m_programId, location.c_str());
+    const auto loc = glGetUniformLocation(m_programId, location.c_str());
     if (loc == -1) {
         std::cout << "Warning: no uniform location with name " << location << std::endl;
     }
@@ -173,19 +173,20 @@ auto ShaderProgram::link() -> bool
     return m_valid;
 }
 
-auto ShaderProgram::bind() -> void
+auto ShaderProgram::bind() const -> void
 {
     if (m_valid) {
         glUseProgram(m_programId);
     }
 }
 
-auto ShaderProgram::unbind() -> void
+// ReSharper disable once CppMemberFunctionMayBeStatic
+auto ShaderProgram::unbind() const -> void
 {
     glUseProgram(0);
 }
 
-auto ShaderProgram::getRaw() -> GLuint
+auto ShaderProgram::getRaw() const -> GLuint
 {
     return m_programId;
 }

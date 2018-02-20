@@ -11,7 +11,8 @@ namespace ren
 	class IKeyListener
 	{
 	public:
-		virtual auto onKeyPressed(Key key, std::vector<KeyMod> mods) -> void = 0;
+	    virtual ~IKeyListener() = default;
+	    virtual auto onKeyPressed(Key key, std::vector<KeyMod> mods) -> void = 0;
 		virtual auto onKeyReleased(Key key, std::vector<KeyMod> mods) -> void  = 0;
 	};
 }

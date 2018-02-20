@@ -16,8 +16,8 @@ namespace ren
     private:
         std::shared_ptr<Camera> m_mainCamera;
         std::shared_ptr<Projection> m_projection;
-        auto createWindow() -> void;
-        auto loadShaders() -> void;
+        static auto createWindow() -> void;
+        auto loadShaders() const -> void;
     public:
         Rengine();
 

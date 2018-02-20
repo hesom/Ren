@@ -11,18 +11,19 @@ namespace ren
 
     ShaderManager::~ShaderManager()
     {
-        for (auto entry : m_shaderMap) {
+        for (const auto entry : m_shaderMap) {
             auto shaderProgram = entry.second;
             shaderProgram->destroy();
         }
     }
 
-    auto ShaderManager::add(std::shared_ptr<ShaderProgram> shaderProgram, std::string name) -> void
+    auto ShaderManager::add(const std::shared_ptr<ShaderProgram>& shaderProgram, const std::string& name) -> void
     {
         m_shaderMap[name] = shaderProgram;
     }
 
-    auto ShaderManager::add(std::string vertexShader, std::string fragmentShader, std::string name) -> void
+    auto ShaderManager::add(const std::string& vertexShader, const std::string& fragmentShader,
+                            const std::string& name) -> void
     {
         auto shaderProgram = std::make_shared<ShaderProgram>();
         shaderProgram->attachVertexShader(vertexShader);
@@ -31,7 +32,8 @@ namespace ren
         m_shaderMap[name] = shaderProgram;
     }
 
-    auto ShaderManager::add(std::string vertexShader, std::string geometryShader, std::string fragmentShader, std::string name) -> void
+    auto ShaderManager::add(const std::string& vertexShader, const std::string& geometryShader,
+                            const std::string& fragmentShader, const std::string& name) -> void
     {
         auto shaderProgram = std::make_shared<ShaderProgram>();
         shaderProgram->attachVertexShader(vertexShader);
@@ -43,7 +45,7 @@ namespace ren
         m_shaderMap[name] = shaderProgram;
     }
 
-    auto ShaderManager::get(std::string name) -> std::shared_ptr<ShaderProgram>
+    auto ShaderManager::get(const std::string& name) -> std::shared_ptr<ShaderProgram>
     {
         if (!m_shaderMap.count(name)) {
             return nullptr;
@@ -51,7 +53,7 @@ namespace ren
         return m_shaderMap.at(name);
     }
 
-    auto ShaderManager::getRaw(std::string name) -> GLuint
+    auto ShaderManager::getRaw(const std::string& name) -> GLuint
     {
         if (!m_shaderMap.count(name)) {
             return -1;

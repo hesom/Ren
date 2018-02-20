@@ -8,7 +8,7 @@ int main()
 	using namespace ren;
 	Rengine engine;
 
-    std::shared_ptr<FPSCamera> camera = std::make_shared<FPSCamera>();
+    const auto camera = std::make_shared<FPSCamera>();
     engine.setMainCamera(camera);
 
     auto well = EntityManager::loadFromFile("well.coveredopen.obj");

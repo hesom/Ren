@@ -7,7 +7,7 @@ namespace ren
     private:
         static float m_deltaTime;
         static float m_lastFrame;
-        Timer();
+        Timer() = delete;
     public:
         static auto tick() -> void;
         static auto deltaTime() -> decltype(m_deltaTime);

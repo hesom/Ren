@@ -4,12 +4,12 @@ namespace ren
 {
     float WaterTile::tile_size = 10.0f;
 
-    WaterTile::WaterTile(float x, float y, float z) :
+    WaterTile::WaterTile(const float x, const float y, const float z) :
         m_position(x, y, z)
     {
     }
 
-    WaterTile::WaterTile(glm::vec3 position) :
+    WaterTile::WaterTile(const glm::vec3 position) :
         m_position(position)
     {
     }
