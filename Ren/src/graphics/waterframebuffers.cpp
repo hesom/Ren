@@ -28,12 +28,12 @@ namespace ren
         glDeleteTextures(1, &m_refractionDepthTexture);
     }
 
-    auto WaterFramebuffers::bindReflectionFramebuffer() -> void
+    auto WaterFramebuffers::bindReflectionFramebuffer() const -> void
     {
         bindFramebuffer(m_reflectionFramebuffer, reflection_width, reflection_height);
     }
 
-    auto WaterFramebuffers::bindRefractionFramebuffer() -> void
+    auto WaterFramebuffers::bindRefractionFramebuffer() const -> void
     {
         bindFramebuffer(m_refractionFramebuffer, refraction_width, refraction_height);
     }

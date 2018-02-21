@@ -5,7 +5,7 @@
 
 #include "rengine.h"
 #include "ui/windowmanager.h"
-#include "graphics/mesh.h"
+#include "graphics/postprocstack.h"
 #include "glm/glm.hpp"
 #include "graphics/shaderprogram.h"
 #include "graphics/shadermanager.h"
@@ -30,17 +30,19 @@ namespace ren
         m_mainCamera = camera;
     }
 
-    auto Rengine::start() -> void
+    auto Rengine::start() const -> void
     {
         loadShaders();
         const auto projectionMatrix = m_projection->getProjectionMatrix();
-        auto waterFbOs = std::make_shared<WaterFramebuffers>();
+        const auto waterFbos = std::make_shared<WaterFramebuffers>();
+        const auto postProcStack = std::make_shared<PostProcessingStack>();
+        postProcStack->addEffect("GammaCorrection");
 
         while (!WindowManager::exitRequested()) {
             Timer::tick();
             m_mainCamera->update();
 
-            auto entityDefaultShader = ShaderManager::get(EntityRenderer::getDefaultShader());
+            const auto entityDefaultShader = ShaderManager::get(EntityRenderer::getDefaultShader());
 
             entityDefaultShader->setUniformMatrix("projectionMatrix", projectionMatrix);
             ShaderManager::get("WaterShader")->setUniformMatrix("projectionMatrix", projectionMatrix);
@@ -57,28 +59,38 @@ namespace ren
 
                 //Water reflection pass
                 entityDefaultShader->setUniformValue("plane", glm::vec4(0.0f, 1.0f, 0.0f, -waterTile->getHeight()));
-                waterFbOs->bindReflectionFramebuffer();
+                waterFbos->bindReflectionFramebuffer();
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
                 EntityRenderer::render(waterCamera);
-                waterFbOs->unbindCurrentFramebuffer();
+                waterFbos->unbindCurrentFramebuffer();
                 //Water refraction pass
                 entityDefaultShader->setUniformValue("plane", glm::vec4(0.0f, -1.0f, 0.0f, waterTile->getHeight()));
-                waterFbOs->bindRefractionFramebuffer();
+                waterFbos->bindRefractionFramebuffer();
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
                 EntityRenderer::render(m_mainCamera);
-                waterFbOs->unbindCurrentFramebuffer();
+                waterFbos->unbindCurrentFramebuffer();
             }
 
             //Main pass
+            if(postProcStack->hasPasses())
+            {
+                postProcStack->setRenderTarget();
+            }
             entityDefaultShader->setUniformValue("plane", glm::vec4(0.0f, -1.0f, 0.0f, 100000.0f));
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             EntityRenderer::render(m_mainCamera);
 
-            WaterRenderer::render(m_mainCamera, waterFbOs);
+            WaterRenderer::render(m_mainCamera, waterFbos);
+
+            if(postProcStack->hasPasses())
+            {
+                postProcStack->doPostProcessing();
+            }
 
             WindowManager::updateWindow();
         }
 
-        waterFbOs->cleanUp();
+        waterFbos->cleanUp();
         WindowManager::destroyWindow();
     }
 
@@ -115,5 +127,15 @@ namespace ren
             ;
 
         ShaderManager::add(vertexSource, fragmentSource, "ToonShader");
+
+        // ------------ Post Processing Shaders -----------
+
+        vertexSource =
+#include "graphics/shaders/postprocessing/standard.vert"
+            ;
+        fragmentSource =
+#include "graphics/shaders/postprocessing/gammacorrect.frag"
+            ;
+        ShaderManager::add(vertexSource, fragmentSource, "GammaCorrection");
     }
 }

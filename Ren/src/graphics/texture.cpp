@@ -71,7 +71,7 @@ namespace ren
         glBindTexture(GL_TEXTURE_2D, m_textureId);
     }
 
-    auto Texture::bind(GLuint textureUnit) const -> void
+    auto Texture::bind(const GLuint textureUnit) const -> void
     {
         glActiveTexture(GL_TEXTURE0 + textureUnit);
         glBindTexture(GL_TEXTURE_2D, m_textureId);

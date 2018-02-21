@@ -152,6 +152,8 @@
     <ClCompile Include="src\graphics\fpscamera.cpp" />
     <ClCompile Include="src\graphics\mesh.cpp" />
     <ClCompile Include="src\graphics\model.cpp" />
+    <ClCompile Include="src\graphics\postprocbuffer.cpp" />
+    <ClCompile Include="src\graphics\postprocstack.cpp" />
     <ClCompile Include="src\graphics\projection.cpp" />
     <ClCompile Include="src\graphics\shadermanager.cpp" />
     <ClCompile Include="src\graphics\shaderprogram.cpp" />
@@ -174,6 +176,8 @@
     <ClInclude Include="include\graphics\fpscamera.h" />
     <ClInclude Include="include\graphics\mesh.h" />
     <ClInclude Include="include\graphics\model.h" />
+    <ClInclude Include="include\graphics\postprocbuffer.h" />
+    <ClInclude Include="include\graphics\postprocstack.h" />
     <ClInclude Include="include\graphics\projection.h" />
     <ClInclude Include="include\graphics\shadermanager.h" />
     <ClInclude Include="include\graphics\shaderprogram.h" />
@@ -194,6 +198,8 @@
   <ItemGroup>
     <None Include="include\graphics\shaders\entityshader.frag" />
     <None Include="include\graphics\shaders\entityshader.vert" />
+    <None Include="include\graphics\shaders\postprocessing\gammacorrect.frag" />
+    <None Include="include\graphics\shaders\postprocessing\standard.vert" />
     <None Include="include\graphics\shaders\toonshader.frag" />
     <None Include="include\graphics\shaders\toonshader.vert" />
     <None Include="include\graphics\shaders\watershader.frag" />

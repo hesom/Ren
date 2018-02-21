@@ -22,7 +22,7 @@ namespace ren
         Rengine();
 
         auto setMainCamera(std::shared_ptr<Camera> camera) -> void;
-        auto start() -> void;
+        auto start() const -> void;
     };
 }
 

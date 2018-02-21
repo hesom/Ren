@@ -32,8 +32,8 @@ namespace ren
         WaterFramebuffers();
 
         auto cleanUp() const -> void;
-        auto bindReflectionFramebuffer() -> void;
-        auto bindRefractionFramebuffer() -> void;
+        auto bindReflectionFramebuffer() const -> void;
+        auto bindRefractionFramebuffer() const -> void;
         auto unbindCurrentFramebuffer() const -> void;
         auto getReflectionTexture() const -> decltype(m_reflectionTexture);
         auto getRefractionTexture() const -> decltype(m_refractionTexture);

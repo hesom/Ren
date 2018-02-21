@@ -37,6 +37,9 @@
     <Filter Include="Source Files\util">
       <UniqueIdentifier>{96f72657-ea68-4032-b2dd-b56236351a76}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\graphics\shaders\postprocessing">
+      <UniqueIdentifier>{85a5e368-bbb8-47f8-b486-e5d90c947b4b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\graphics\mesh.cpp">
@@ -101,6 +104,12 @@
     </ClCompile>
     <ClCompile Include="src\rengine.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\postprocbuffer.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\postprocstack.cpp">
+      <Filter>Source Files\graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -176,6 +185,12 @@
     <ClInclude Include="include\graphics\watertile.h">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
+    <ClInclude Include="include\graphics\postprocbuffer.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\postprocstack.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="include\graphics\shaders\entityshader.frag">
@@ -195,6 +210,12 @@
     </None>
     <None Include="include\graphics\shaders\toonshader.vert">
       <Filter>Header Files\graphics\shaders</Filter>
+    </None>
+    <None Include="include\graphics\shaders\postprocessing\standard.vert">
+      <Filter>Header Files\graphics\shaders\postprocessing</Filter>
+    </None>
+    <None Include="include\graphics\shaders\postprocessing\gammacorrect.frag">
+      <Filter>Header Files\graphics\shaders\postprocessing</Filter>
     </None>
   </ItemGroup>
 </Project>
