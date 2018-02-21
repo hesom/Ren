@@ -23,11 +23,17 @@ namespace ren
     {
         createWindow();
         m_projection = std::make_shared<Projection>(90.0f, 0.1f, 100.0f, 1280, 720);
+        m_postProcStack = std::make_shared<PostProcessingStack>();
     }
 
-    auto Rengine::setMainCamera(std::shared_ptr<Camera> camera) -> void
+    auto Rengine::setMainCamera(const std::shared_ptr<Camera> camera) -> void
     {
         m_mainCamera = camera;
+    }
+
+    auto Rengine::addPostProcessingEffect(const std::string& shader) const -> void
+    {
+        m_postProcStack->addEffect(shader);
     }
 
     auto Rengine::start() const -> void
@@ -35,8 +41,6 @@ namespace ren
         loadShaders();
         const auto projectionMatrix = m_projection->getProjectionMatrix();
         const auto waterFbos = std::make_shared<WaterFramebuffers>();
-        const auto postProcStack = std::make_shared<PostProcessingStack>();
-        postProcStack->addEffect("GammaCorrection");
 
         while (!WindowManager::exitRequested()) {
             Timer::tick();
@@ -72,9 +76,9 @@ namespace ren
             }
 
             //Main pass
-            if(postProcStack->hasPasses())
+            if(m_postProcStack->hasPasses())
             {
-                postProcStack->setRenderTarget();
+                m_postProcStack->setRenderTarget();
             }
             entityDefaultShader->setUniformValue("plane", glm::vec4(0.0f, -1.0f, 0.0f, 100000.0f));
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -82,9 +86,9 @@ namespace ren
 
             WaterRenderer::render(m_mainCamera, waterFbos);
 
-            if(postProcStack->hasPasses())
+            if(m_postProcStack->hasPasses())
             {
-                postProcStack->doPostProcessing();
+                m_postProcStack->doPostProcessing();
             }
 
             WindowManager::updateWindow();

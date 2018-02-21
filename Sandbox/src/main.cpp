@@ -25,6 +25,7 @@ int main()
     WaterRenderer::addTile(std::make_shared<WaterTile>(0.0f, 0.0f, 0.0f));
     
     //EntityRenderer::setDefaultShader("ToonShader");
+    engine.addPostProcessingEffect("GammaCorrection");
     
 	engine.start();
 }
