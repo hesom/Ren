@@ -16,6 +16,9 @@ uniform sampler2D dudvMap;
 uniform sampler2D normalMap;
 
 uniform vec3 lightColor[MAX_LIGHTS];
+const float attenuationConstant = 1.0;
+uniform float attenuationLinear[MAX_LIGHTS];
+uniform float attenuationQuadratic[MAX_LIGHTS];
 uniform float animationTimer;
 
 const float waveStrength = 0.01;
@@ -50,9 +53,11 @@ void main()
     vec3 totalSpecular = vec3(0.0);
 
     for(int i = 0; i < MAX_LIGHTS; i++){
+        float dist = length(fromLight[i]);
+        float attenuation = 1.0 / (attenuationConstant + dist*(attenuationLinear[i] + dist*(attenuationQuadratic[i])));
         vec3 reflectedLight = reflect(normalize(fromLight[i]), normal);
         float specular = pow(max(dot(reflectedLight, viewVector), 0.0), 120.0);
-        totalSpecular += specular * reflectivity * lightColor[i];
+        totalSpecular += attenuation*(specular * reflectivity * lightColor[i]);
     }
 
     fcolor = mix(reflectColor, refractColor, fresnelFactor);

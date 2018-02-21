@@ -81,10 +81,14 @@ namespace ren
             if (i < lights.size()) {
                 ShaderManager::get("WaterShader")->setUniformValue("lightPos[" + std::to_string(i) + "]", lights[i]->getPosition());
                 ShaderManager::get("WaterShader")->setUniformValue("lightColor[" + std::to_string(i) + "]", lights[i]->getColor());
+                ShaderManager::get("WaterShader")->setUniformValue("attenuationLinear[" + std::to_string(i) + "]", lights[i]->getAttenuationLinear());
+                ShaderManager::get("WaterShader")->setUniformValue("attenuationQuadratic[" + std::to_string(i) + "]", lights[i]->getAttenuationQuadratic());
             }
             else {
                 ShaderManager::get("WaterShader")->setUniformValue("lightPos[" + std::to_string(i) + "]", glm::vec3(0.0f));
                 ShaderManager::get("WaterShader")->setUniformValue("lightColor[" + std::to_string(i) + "]", glm::vec3(0.0f));
+                ShaderManager::get("WaterShader")->setUniformValue("attenuationLinear[" + std::to_string(i) + "]", 0.0f);
+                ShaderManager::get("WaterShader")->setUniformValue("attenuationQuadratic[" + std::to_string(i) + "]", 0.0f);
             }
         }
 

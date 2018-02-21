@@ -26,7 +26,7 @@ namespace ren
         auto shader = ShaderManager::get(m_defaultShader);
         shader->bind();
         auto entities = EntityManager::getAllEntities();
-        auto directionalLights = EntityManager::getAllLights();
+        auto pointLights = EntityManager::getAllLights();
         const auto viewMatrix = camera->getViewMatrix();
 
         glEnable(GL_DEPTH_TEST);
@@ -34,13 +34,17 @@ namespace ren
         glEnable(GL_CLIP_DISTANCE0);
 
         for (int i = 0; i < MAX_LIGHTS; i++) {
-            if (i < directionalLights.size()) {
-                shader->setUniformValue("lightPos[" + std::to_string(i) + "]", directionalLights[i]->getPosition());
-                shader->setUniformValue("lightColor[" + std::to_string(i) + "]", directionalLights[i]->getColor());
+            if (i < pointLights.size()) {
+                shader->setUniformValue("lightPos[" + std::to_string(i) + "]", pointLights[i]->getPosition());
+                shader->setUniformValue("lightColor[" + std::to_string(i) + "]", pointLights[i]->getColor());
+                shader->setUniformValue("attenuationLinear[" + std::to_string(i) + "]", pointLights[i]->getAttenuationLinear());
+                shader->setUniformValue("attenuationQuadratic[" + std::to_string(i) + "]", pointLights[i]->getAttenuationQuadratic());
             }
             else {
                 shader->setUniformValue("lightPos[" + std::to_string(i) + "]", glm::vec3(0.0f));
                 shader->setUniformValue("lightColor[" + std::to_string(i) + "]", glm::vec3(0.0f));
+                shader->setUniformValue("attenuationLinear[" + std::to_string(i) + "]", 0.0f);
+                shader->setUniformValue("attenuationQuadratic[" + std::to_string(i) + "]", 0.0f);
             }
         }
         

@@ -14,7 +14,7 @@ namespace ren
     class Entity;
 
     std::vector<std::shared_ptr<Entity>> EntityManager::m_entities;
-    std::vector<std::shared_ptr<PointLight>> EntityManager::m_directionalLights;
+    std::vector<std::shared_ptr<PointLight>> EntityManager::m_pointLights;
 
     auto EntityManager::processNode(aiNode * node, const aiScene * scene) -> void
     {
@@ -30,10 +30,10 @@ namespace ren
         return entity;
     }
 
-    auto EntityManager::addPointLight(glm::vec3 position, glm::vec3 color) -> std::shared_ptr<PointLight>
+    auto EntityManager::addPointLight(glm::vec3 position, glm::vec3 color, float attenuationLinear, float attenuationQuadratic) -> std::shared_ptr<PointLight>
     {
-        m_directionalLights.push_back(std::make_shared<PointLight>(position, color));
-        return m_directionalLights.at(m_directionalLights.size()-1);
+        m_pointLights.push_back(std::make_shared<PointLight>(position, color, attenuationLinear, attenuationQuadratic));
+        return m_pointLights.at(m_pointLights.size()-1);
     }
 
     auto EntityManager::get(const size_t handle) -> std::shared_ptr<Entity>
@@ -46,9 +46,9 @@ namespace ren
         return m_entities;
     }
 
-    auto EntityManager::getAllLights() -> const decltype(m_directionalLights)&
+    auto EntityManager::getAllLights() -> const decltype(m_pointLights)&
     {
-        return m_directionalLights;
+        return m_pointLights;
     }
 }
 

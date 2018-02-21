@@ -20,6 +20,9 @@ uniform float hasNormalTex;
 uniform float hasSpecularTex;
 
 uniform vec3 lightColor[MAX_LIGHTS];
+const float attenuationConstant = 1.0;
+uniform float attenuationLinear[MAX_LIGHTS];
+uniform float attenuationQuadratic[MAX_LIGHTS];
 
 void main()
 {   
@@ -54,15 +57,17 @@ void main()
 
     for(int i = 0; i < MAX_LIGHTS; i++){
         vec3 light = normalize(vlight[i]);
+        float dist = length(vlight[i]);
+        float attenuation = 1.0 / (attenuationConstant + dist*(attenuationLinear[i] + dist*(attenuationQuadratic[i])));
         vec3 view = normalize(vview);
         vec3 halfway = normalize(light + view);
         vec3 diffuse = surface_color * lightColor[i] * max(dot(light, normal), 0.0);
         vec3 specular = ks * lightColor[i] * pow(max(dot(halfway, normal), 0.0), shininess);
         vec3 ambient = ka*lightColor[i];
 
-        totalDiffuse+=diffuse;
-        totalSpecular+=specular;
-        totalAmbient += ambient;
+        totalDiffuse  += attenuation*diffuse;
+        totalSpecular += attenuation*specular;
+        totalAmbient  += attenuation*ambient;
     }
 
     fcolor = vec4(surface_color * (totalDiffuse + totalSpecular + totalAmbient), 1.0);
