@@ -26,7 +26,7 @@ namespace ren
         m_postProcStack = std::make_shared<PostProcessingStack>();
     }
 
-    auto Rengine::setMainCamera(const std::shared_ptr<Camera> camera) -> void
+    auto Rengine::setMainCamera(const std::shared_ptr<Camera>& camera) -> void
     {
         m_mainCamera = camera;
     }

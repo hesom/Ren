@@ -23,7 +23,7 @@ namespace ren
     public:
         Rengine();
 
-        auto setMainCamera(std::shared_ptr<Camera> camera) -> void;
+        auto setMainCamera(const std::shared_ptr<Camera>& camera) -> void;
         auto addPostProcessingEffect(const std::string& shader) const -> void;
         auto start() const -> void;
     };
