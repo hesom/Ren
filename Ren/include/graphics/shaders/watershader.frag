@@ -56,7 +56,7 @@ void main()
     }
 
     fcolor = mix(reflectColor, refractColor, fresnelFactor);
-    fcolor = mix(fcolor, vec4(0.0, 1.0, 1.0, 1.0), 0.5);
+    fcolor = mix(fcolor, vec4(0.0, 0.2, 0.7, 1.0), 0.1);
     fcolor += vec4(totalSpecular, 0.0);
 }
 
