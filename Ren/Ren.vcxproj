@@ -199,6 +199,7 @@
     <None Include="include\graphics\shaders\entityshader.frag" />
     <None Include="include\graphics\shaders\entityshader.vert" />
     <None Include="include\graphics\shaders\postprocessing\gammacorrect.frag" />
+    <None Include="include\graphics\shaders\postprocessing\hdr.frag" />
     <None Include="include\graphics\shaders\postprocessing\standard.vert" />
     <None Include="include\graphics\shaders\toonshader.frag" />
     <None Include="include\graphics\shaders\toonshader.vert" />

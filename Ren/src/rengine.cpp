@@ -141,5 +141,10 @@ namespace ren
 #include "graphics/shaders/postprocessing/gammacorrect.frag"
             ;
         ShaderManager::add(vertexSource, fragmentSource, "GammaCorrection");
+
+        fragmentSource =
+#include "graphics/shaders/postprocessing/hdr.frag"
+            ;
+        ShaderManager::add(vertexSource, fragmentSource, "HDR");
     }
 }

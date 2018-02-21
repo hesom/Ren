@@ -52,7 +52,7 @@ namespace ren
             const auto shader = ShaderManager::get(pass.first);
             const auto currentImage = pass.second->getColorTexture();
 
-            if(i == m_passes.size()-1)
+            if(i == m_passes.size()-1)  // last pass
             {   
                 // Render to default framebuffer
                 glBindFramebuffer(GL_FRAMEBUFFER, 0);

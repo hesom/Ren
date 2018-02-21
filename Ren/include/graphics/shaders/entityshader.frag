@@ -47,7 +47,7 @@ void main()
         ks = texture(specularMap, vtexcoord).rgb;
     }
 
-    const float ka = 0.1;
+    const float ka = 0.0;
 
     vec3 surface_color = texture(diffuseMap, vtexcoord).rgb;
 

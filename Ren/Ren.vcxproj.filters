@@ -217,5 +217,8 @@
     <None Include="include\graphics\shaders\postprocessing\gammacorrect.frag">
       <Filter>Header Files\graphics\shaders\postprocessing</Filter>
     </None>
+    <None Include="include\graphics\shaders\postprocessing\hdr.frag">
+      <Filter>Header Files\graphics\shaders\postprocessing</Filter>
+    </None>
   </ItemGroup>
 </Project>
