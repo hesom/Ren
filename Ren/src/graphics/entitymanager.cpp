@@ -14,7 +14,7 @@ namespace ren
     class Entity;
 
     std::vector<std::shared_ptr<Entity>> EntityManager::m_entities;
-    std::vector<std::shared_ptr<DirectionalLight>> EntityManager::m_directionalLights;
+    std::vector<std::shared_ptr<PointLight>> EntityManager::m_directionalLights;
 
     auto EntityManager::processNode(aiNode * node, const aiScene * scene) -> void
     {
@@ -30,9 +30,9 @@ namespace ren
         return entity;
     }
 
-    auto EntityManager::addDirectionalLight(glm::vec3 position, glm::vec3 color) -> std::shared_ptr<DirectionalLight>
+    auto EntityManager::addPointLight(glm::vec3 position, glm::vec3 color) -> std::shared_ptr<PointLight>
     {
-        m_directionalLights.push_back(std::make_shared<DirectionalLight>(position, color));
+        m_directionalLights.push_back(std::make_shared<PointLight>(position, color));
         return m_directionalLights.at(m_directionalLights.size()-1);
     }
 

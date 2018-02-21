@@ -145,7 +145,7 @@
   <ItemGroup>
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\graphics\camera.cpp" />
-    <ClCompile Include="src\graphics\directionallight.cpp" />
+    <ClCompile Include="src\graphics\pointlight.cpp" />
     <ClCompile Include="src\graphics\entity.cpp" />
     <ClCompile Include="src\graphics\entitymanager.cpp" />
     <ClCompile Include="src\graphics\entityrenderer.cpp" />
@@ -169,7 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\graphics\camera.h" />
-    <ClInclude Include="include\graphics\directionallight.h" />
+    <ClInclude Include="include\graphics\pointlight.h" />
     <ClInclude Include="include\graphics\entity.h" />
     <ClInclude Include="include\graphics\entitymanager.h" />
     <ClInclude Include="include\graphics\entityrenderer.h" />

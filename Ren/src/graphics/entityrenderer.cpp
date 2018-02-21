@@ -2,7 +2,7 @@
 #include "graphics/entitymanager.h"
 #include "graphics/shadermanager.h"
 #include "graphics/entity.h"
-#include "graphics/directionallight.h"
+#include "graphics/pointlight.h"
 
 #define MAX_LIGHTS 16
 

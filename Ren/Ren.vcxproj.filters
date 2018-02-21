@@ -84,9 +84,6 @@
     <ClCompile Include="src\util\stb_image.cpp">
       <Filter>Header Files\util</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\directionallight.cpp">
-      <Filter>Source Files\graphics</Filter>
-    </ClCompile>
     <ClCompile Include="src\graphics\entityrenderer.cpp">
       <Filter>Source Files\graphics</Filter>
     </ClCompile>
@@ -109,6 +106,9 @@
       <Filter>Source Files\graphics</Filter>
     </ClCompile>
     <ClCompile Include="src\graphics\postprocstack.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\pointlight.cpp">
       <Filter>Source Files\graphics</Filter>
     </ClCompile>
   </ItemGroup>
@@ -167,9 +167,6 @@
     <ClInclude Include="include\util\stb_image.h">
       <Filter>Header Files\util</Filter>
     </ClInclude>
-    <ClInclude Include="include\graphics\directionallight.h">
-      <Filter>Header Files\graphics</Filter>
-    </ClInclude>
     <ClInclude Include="include\graphics\entityrenderer.h">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
@@ -189,6 +186,9 @@
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
     <ClInclude Include="include\graphics\postprocstack.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\pointlight.h">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
   </ItemGroup>

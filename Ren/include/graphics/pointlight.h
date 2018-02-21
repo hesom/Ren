@@ -3,13 +3,13 @@
 
 namespace ren
 {
-    class DirectionalLight
+    class PointLight
     {
     private:
         glm::vec3 m_position;
         glm::vec3 m_color;
     public:
-        DirectionalLight(glm::vec3 position, glm::vec3 color);
+        PointLight(glm::vec3 position, glm::vec3 color);
         auto getPosition() const -> const decltype(m_position)&;
         auto getColor() const -> const decltype(m_color)&;
     };
